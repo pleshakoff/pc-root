@@ -1,9 +1,7 @@
 version: "3"
 services:
-  postgres:
+  pc-classroom-pg:
     image: postgres:11
-    expose:
-      - 5432
     ports:
       - "5432:5432"
     networks:
@@ -12,14 +10,50 @@ services:
       - POSTGRES_PASSWORD=parcom
     restart: on-failure
   pc-classroom:
-    build:
-      dockerfile: Dockerfile
-      context: .
+    image: pleshakoff/pc-classroom:hw2
     ports:
       - "8080:8080"
     networks:
       - app
     depends_on:
-      - postgres
+      - pc-classroom-pg
+  pc-security-pg:
+    image: postgres:11
+    ports:
+      - "5433:5432"
+    networks:
+      - app
+    environment:
+      - POSTGRES_PASSWORD=parcom
+    restart: on-failure
+  pc-security:
+    image: pleshakoff/pc-security:hw2
+    ports:
+      - "8081:8081"
+    networks:
+      - app
+    depends_on:
+      - pc-security-pg
+
+  pc-notifier:
+    image: pleshakoff/pc-notifier:hw2
+    ports:
+      - "8083:8083"
+    networks:
+      - app
+  pc-notifier-agent-email:
+    image: pleshakoff/pc-notifier-agent-email:hw2
+    ports:
+      - "8084:8084"
+    networks:
+      - app
+  pc-notifier-agent-push:
+    image: pleshakoff/pc-notifier-agent-push:hw2
+    ports:
+      - "8085:8085"
+    networks:
+      - app
+
+
 networks:
   app:
