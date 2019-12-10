@@ -20,7 +20,8 @@ services:
   pc-security-pg:
     image: postgres:11
     ports:
-      - "5433:5432"
+      - "5433:5433"
+    command: -p 5433
     networks:
       - app
     environment:
@@ -34,7 +35,6 @@ services:
       - app
     depends_on:
       - pc-security-pg
-
   pc-notifier:
     image: pleshakoff/pc-notifier:hw2
     ports:
@@ -53,7 +53,6 @@ services:
       - "8085:8085"
     networks:
       - app
-
 
 networks:
   app:
