@@ -31,4 +31,4 @@ docker image build -t pleshakoff/pc-notifier-agent-push:%branch% .
 docker image push pleshakoff/pc-notifier-agent-push:%branch%
 
 
-cd d:\jprojects\parcom\pc-root\
+cd d:\jprojects\parcom\pc-root\win
