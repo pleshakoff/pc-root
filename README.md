@@ -49,7 +49,7 @@ http://localhost:8081/swagger-ui.html
 
 Сервис управления учетными записями 
 
-* Регистрация и хранение учетных записи 
+* Регистрация и хранение учетных записей 
 * Аутентификация 
 * Формирование "self contained" токена со сроком действия.
 * Смена пароля 
@@ -114,18 +114,18 @@ http://localhost:8085/swagger-ui.html
 
 ## Get started 
 
-Для развертывания сервисов необходимо выполнить `docker-compose up` запущен будет контейнеры с сервисами из 
-публичного docker hub.
+Для развертывания сервисов необходимо выполнить `docker-compose up` из этого репозитория, запущены 
+будут контейнеры с сервисами из публичного docker hub.
 
 Для того чтобы проверить отправку сообщений необходимо сделать следующее: 
 
 ##### Запостить какую либо новость: 
 
-Сервис classroom. Swagger: http://localhost:8080/swagger-ui.html#/user-controller
+Сервис classroom. Swagger: http://localhost:8080/swagger-ui.html
 
 Контроллер `/news` метод `POST` 
 
-Тестовый вечный токен для авторизации 
+Тестовый вечный токен для авторизации. Необходимо добавить в хидер запроса (X-Auth-Token)  
 `eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsInVzZXIiOiJhZG1pbkBtYWlsLmNvbSIsImlkVXNlciI6MSwiaWRHcm91cCI6MjEsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTU3NTgxNTA5OCwiZXhwIjoxNjA3MzUxMDk4fQ.q5Dv3rnzrfc7IXE2HoTK7wTCsgamAMcROBUYOtSOOocgpxFN5dRzpJadbSr4Zh9xZRihFTUQOaInPGqhasoGLA`
 
 Тело запроса 
@@ -143,13 +143,18 @@ http://localhost:8085/swagger-ui.html
 
 Будет видно что для каждого родителя отправлено уведомление через двух агентов 
 
-Что-то вроде вот этого 
+Что-то вроде вот этого: 
 
-Потом можно посмотреть логи агентов 
+![alt text](https://github.com/pleshakoff/pc-root/blob/hw2/screen/log1hw2.png?raw=true"")
+
+
+
+Потом можно посмотреть логи агентов: 
 
  `docker-compose logs pc-notifier-agent-email`
  
  `docker-compose logs pc-notifier-agent-push`
   
+![alt text](https://github.com/pleshakoff/pc-root/blob/hw2/screen/log2hw2.png?raw=true"")
 
 
