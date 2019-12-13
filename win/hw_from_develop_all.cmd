@@ -1,1 +1,1 @@
-call all.cmd hw3 hw_from_develop.cmd
+call all.cmd hw_from_develop.cmd hw3

@@ -1,10 +1,10 @@
-set branch=%1
-set filename=%2
+set filename=%1
+set branch=%2
 
-call %filename% %branch% d:\jprojects\parcom\pc-root\
-call %filename% %branch% d:\jprojects\parcom\pc-classroom\
-call %filename% %branch% d:\jprojects\parcom\pc-news\
-call %filename% %branch% d:\jprojects\parcom\pc-security\
-call %filename% %branch% d:\jprojects\parcom\pc-notifier\
-call %filename% %branch% d:\jprojects\parcom\pc-notifier-agent-email\
-call %filename% %branch% d:\jprojects\parcom\pc-notifier-agent-push\
+call %filename% %branch% pc-root
+call %filename% %branch% pc-classroom
+call %filename% %branch% pc-news
+call %filename% %branch% pc-security
+call %filename% %branch% pc-notifier
+call %filename% %branch% pc-notifier-agent-email
+call %filename% %branch% pc-notifier-agent-push

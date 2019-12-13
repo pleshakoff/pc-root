@@ -1,9 +1,11 @@
 set branch=%1
-set dir=%2
+set service=%2
 
-cd %dir%
+echo %service%
+cd d:\jprojects\parcom\%service%\
 git -c "credential.helper=C:/Program\ Files/SmartGit/lib/credentials.cmd" checkout %branch%
-docker image build -t pleshakoff/pc-classroom:%branch% .
-docker image push pleshakoff/pc-classroom:%branch%
+cmd /C gradlew assemble
+docker image build -t pleshakoff/%service%:%branch% .
+docker image push pleshakoff/%service%:%branch%
 
 cd d:\jprojects\parcom\pc-root\win

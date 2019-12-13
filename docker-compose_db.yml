@@ -19,7 +19,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=parcom
     restart: on-failure
-  pc_news_mongo:
+  pc-news-mongo:
     image: mongo
     ports:
       - "27017:27017"

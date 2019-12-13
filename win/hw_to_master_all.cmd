@@ -1,1 +1,1 @@
-call all.cmd hw3 hw_to_master.cmd
+call all.cmd hw_to_master.cmd hw3

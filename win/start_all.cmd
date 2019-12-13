@@ -1,0 +1,1 @@
+call all.cmd start_all.cmd
