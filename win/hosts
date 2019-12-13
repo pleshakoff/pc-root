@@ -1,8 +1,11 @@
 127.0.0.1 pc-classroom-pg
-127.0.0.1 pc-calssroom
+127.0.0.1 pc-classroom
 127.0.0.1 pc-security
 127.0.0.1 pc-security-pg
 127.0.0.1 pc-news
 127.0.0.1 pc-notifier
 127.0.0.1 pc-notifier-agent-email
 127.0.0.1 pc-notifier-agent-push
+127.0.0.1 pc_news_mongo
+
+ 

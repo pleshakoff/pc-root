@@ -1,0 +1,30 @@
+version: "3"
+services:
+  pc-classroom-pg:
+    image: postgres:11
+    ports:
+      - "5432:5432"
+    networks:
+      - app
+    environment:
+      - POSTGRES_PASSWORD=parcom
+    restart: on-failure
+  pc-security-pg:
+    image: postgres:11
+    ports:
+      - "5433:5433"
+    command: -p 5433
+    networks:
+      - app
+    environment:
+      - POSTGRES_PASSWORD=parcom
+    restart: on-failure
+  pc_news_mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    restart: on-failure
+    networks:
+      - app
+networks:
+  app:
