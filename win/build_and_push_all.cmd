@@ -1,0 +1,1 @@
+call all.cmd hw3 build_and_push.cmd
