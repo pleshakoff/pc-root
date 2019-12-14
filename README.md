@@ -57,7 +57,9 @@
 
 ## Логическая структура 
 
-![alt text](https://github.com/pleshakoff/pc-root/blob/hw2/pics/parcom_hw2.png?raw=true"")
+![alt text](https://github.com/pleshakoff/pc-root/blob/hw3/pics/parcom_hw3.png?raw=true"")
+
+
 
 ### Сервисы
 
