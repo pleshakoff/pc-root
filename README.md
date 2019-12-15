@@ -1,7 +1,8 @@
 # Родительский комитет
 
 1. [ Описание системы. ](#desc)
-2. [ Usage tips. ](#usage)
+2. [ Логическая структура. ](#struct)
+3. [ Get started. ](#get-started)
 
 
 <a name="desc"></a>
@@ -71,25 +72,38 @@
 При формировании новой цели родителям детей рассылаются уведомления.  
             
 
+<a name="struct"></a>
 ## Логическая структура 
+
+### Схема
 
 ![alt text](https://github.com/pleshakoff/pc-root/blob/hw3/pics/parcom_hw3.png?raw=true"")
 
 
 Во всех сервисах работа ведется в контексте текущего ученика. Данные о текущем ученике пользователя 
 зашифрованы в "self contained" токене, 
-который формируется сервисом авторизации и должен передваться во все запросы к сервисам.
+который формируется сервисом авторизации [ Security ](#Security) и должен передваться во все запросы к сервисам.
 
 Валидация токена осуществляется на стороне сервисов(sidecar).  
 
 Авторизация тоже на стороне сервисов, путем определения доступа к методам для роли из токена
 (у пользователя может быть всего одна роль и ее можно передать в токене)
 
-Сервисы Pools и Money есть на схеме, но они ее не реализованы. 
-Также пока все взаимодействие осуществляется в синхронном режиме, брокеров сообщений и очередей нет. 
+Сервисы [ Polls ](#Polls) и [ Money ](#Money) есть на схеме, но они ее не реализованы. 
+Также все взаимодействие осуществляется в синхронном режиме, брокеров сообщений и очередей нет. 
 
 ### Сервисы
 
+* [ Security ](#Security)
+* [ Classroom ](#Classroom)
+* [ News ](#News)
+* [ Polls ](#Polls)
+* [ Money ](#Money)
+* [ Notifier ](#Notifier)
+* [ Notifier Agent Email ](#NotifierAgentEmail)
+* [ Notifier Agent Push ](#NotifierAgentPush)
+
+<a name="Security"></a>
 #### Security 
 
 Репозиторий: https://github.com/pleshakoff/pc-security
@@ -109,7 +123,7 @@ Swagger: http://localhost:8081/swagger-ui.html
  При сменее текущего студента студента или группы (​/auth​/context) вызвает методы    
  
 
-
+<a name="Classroom"></a>
 #### Classroom 
 
 Репозиторий: https://github.com/pleshakoff/pc-classroom
@@ -125,6 +139,16 @@ Swagger: http://localhost:8080/swagger-ui.html
 * Привязка родителей к ученикам
 * Публикация новостей (переедет в отдельный сервис)  
 
+<a name="News"></a>
+#### News  
+
+<a name="Polls"></a>
+#### Polls  
+
+<a name="Money"></a>
+#### Money  
+
+<a name="Notifier"></a>
 #### Notifier  
 
 Репозиторий: https://github.com/pleshakoff/pc-notifier
@@ -143,6 +167,7 @@ Swagger: http://localhost:8083/swagger-ui.html
 В зависимост от типа уведомления формирует список пользователей получателй  и передает идентификатор
 каждого зарегистрированым агентам.   
 
+<a name="NotifierAgentEmail"></a>
 #### Notifier Agent Email    
 
 Репозиторий: https://github.com/pleshakoff/pc-notifier-agent-email
@@ -153,6 +178,7 @@ Swagger: http://localhost:8084/swagger-ui.html
 Получает  идентификатор пользователя и текст сообщения от сервиса Notifier, запрашивает email 
 у сервиса Classroom и отправляет письмо (в текущей версии просто пишет в лог) 
 
+<a name="NotifierAgentPush"></a>
 #### Notifier Agent Push    
 
 Репозиторий: https://github.com/pleshakoff/pc-notifier-agent-push
@@ -164,7 +190,7 @@ Swagger: http://localhost:8085/swagger-ui.html
 у сервиса Classroom и отправляет push или sms (в текущей версии просто пишет в лог) 
 
 
-
+<a name="get-started"></a>
 ## Get started 
 
 Для развертывания сервисов необходимо выполнить `docker-compose up` из этого репозитория, запущены 
