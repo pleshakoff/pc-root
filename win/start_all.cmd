@@ -1,1 +1,1 @@
-call all.cmd start_all.cmd
+call all.cmd start.cmd
