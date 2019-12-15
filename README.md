@@ -194,11 +194,11 @@ Swagger: http://localhost:8082/swagger-ui.html
 
 #### Взаимодействие с другими сервисами     
  
- 1. Через брокер сообщение синхронизируется со списком учеников 
+ 1. Через брокер сообщений синхронизируется со списком учеников 
  группы, поставляемым сервисом [Classroom](#Classroom)
  
  2. При публикации опроса вызывает метод сервиса [Notifier](#Notifier), 
- рассылающий групповое (POST ​/send​/group) сообщение или сообщение списку пользователей, 
+ рассылающий групповое сообщение (POST ​/send​/group) или сообщение списку пользователей, 
  участников опроса (POST ​/send​/custom). 
  Новость публикуется незвисимо от того, удачно ли прошла рассылка уведомления. 
  В текущей реализации взаимодействие синхронное, 
@@ -219,10 +219,10 @@ Swagger: http://localhost:8082/swagger-ui.html
  
 #### Взаимодействие с другими сервисами     
  
- 1. Через брокер сообщение синхронизируется со списком учеников 
+ 1. Через брокер сообщений синхронизируется со списком учеников 
  группы, поставляемым сервисом [Classroom](#Classroom)
  
- 2. При публикации цели сбора средств вызывает метод сервиса [Notifier](#Notifier) ,
+ 2. При публикации цели сбора средств вызывает метод сервиса [Notifier](#Notifier),
  рассылающий групповое (POST ​/send​/group) сообщение или сообщение списку пользователей, 
  участников сбора (POST ​/send​/custom). 
  Новость публикуется незвисимо от того, удачно ли прошла рассылка уведомления. 
@@ -246,13 +246,13 @@ Swagger: http://localhost:8083/swagger-ui.html
 * Для отдельного пользователя 
 * Для списка пользователей     
 
-В зависимост от типа уведомления формирует список пользователей получателй и передает идентификатор
+В зависимости от типа уведомления формирует список пользователей получателй и передает идентификатор
 каждого зарегистрированым агентам.   
 
 1. Если сообщение общегрупповое (POST ​/send​/group), то запрашивает идентификаторы пользователей(родителей)
 группы у сервиса [Classroom](#Classroom) (GET ​/users​/all)
  
-2. Переправляет сообщение и идентифиаторы пользователей получателей зарегистрирвоанным агентам 
+2. Переправляет сообщение и идентифиаторы пользователей получателей зарегистрирвоанным агентам, вызывая их метод
 (POST ​/send​/) В текущей реализации взаимодействие синхронное, в дальйшем планируется использовать брокер сообщений.
 
 
@@ -290,44 +290,98 @@ Swagger: http://localhost:8085/swagger-ui.html
 Для развертывания сервисов необходимо выполнить `docker-compose up` из этого репозитория, запущены 
 будут контейнеры с сервисами из публичного docker hub.
 
-Для того чтобы проверить отправку сообщений необходимо сделать следующее: 
+В систему загружены тестовые данные и можно пробовать вызывать API. 
 
-##### Запостить какую либо новость: 
+### Логин 
 
-Сервис classroom. Swagger: http://localhost:8080/swagger-ui.html
+Сейчас в системе созданы три пользователя с разными ролями, можно залогиниться одним из них, 
+или же сразу использовать уже готовый тестовый токен 
+http://localhost:8081/auth/login
 
-Контроллер `/news` метод `POST` 
+**Админ** 
 
-Тестовый вечный токен для авторизации. Необходимо добавить в хидер запроса (X-Auth-Token)  
-`eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsInVzZXIiOiJhZG1pbkBtYWlsLmNvbSIsImlkVXNlciI6MSwiaWRHcm91cCI6MjEsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTU3NTgxNTA5OCwiZXhwIjoxNjA3MzUxMDk4fQ.q5Dv3rnzrfc7IXE2HoTK7wTCsgamAMcROBUYOtSOOocgpxFN5dRzpJadbSr4Zh9xZRihFTUQOaInPGqhasoGLA`
+logn: admin@mail.com
 
-Тело запроса 
+pass: 12345
+
+token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsInVzZXIiOiJhZG1pbkBtYWlsLmNvbSIsImlkVXNlciI6MSwiaWRHcm91cCI6MjEsImlkU3R1ZGVudCI6MzEsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTU3NjMyMDc5NywiZXhwIjoxNjA3ODU2Nzk3fQ.qEfk5Jxdc7lNpJq_AF5gjn985FZMHhnHYNroM2Thu7kVz04OucBSEWcT0dKRHytWXmr6IsVX28BuNZEfN0Z8zg
+
+
+**Член родительского комитета**
+  
+logn: molly@weasley.com
+
+pass: 12345
+
+token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtb2xseUB3ZWFzbGV5LmNvbSIsInVzZXIiOiJtb2xseUB3ZWFzbGV5LmNvbSIsImlkVXNlciI6MiwiaWRHcm91cCI6MjEsImlkU3R1ZGVudCI6MzIsImF1dGhvcml0aWVzIjoiUk9MRV9NRU1CRVIiLCJpYXQiOjE1NzYzMjA3NDEsImV4cCI6MTYwNzg1Njc0MX0.lo9iJNR3XW-R8EzQKivIKEJD0nwvFAoIyT62lE2f3PvC6oP66jHDloC83wukTEcemmuI_Ant4bq1t4EF-r7WGg
+
+
+**Простой родитель**
+  
+logn: artur@weasley.com
+
+pass: 12345
+
+token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnR1ckB3ZWFzbGV5LmNvbSIsInVzZXIiOiJhcnR1ckB3ZWFzbGV5LmNvbSIsImlkVXNlciI6MywiaWRHcm91cCI6MjEsImlkU3R1ZGVudCI6MzIsImF1dGhvcml0aWVzIjoiUk9MRV9QQVJFTlQiLCJpYXQiOjE1NzYzMjA2ODgsImV4cCI6MTYwNzg1NjY4OH0.E91aUr4OKnWq1sdRVpSdv2UDuis9i5-9QUMgQxn_I4iNB7ee5so04gzisJGL9a3UhNLHTjwu3yN-AVEWVZ8w-Q
+ 
+### Регистрация 
+
+**Регистрация простого родителя** 
+http://localhost:8080/add/parent
+
+Необходимо знать id ученика. 
+Предполагается что член родительского комитета или админ отправил родителям приглашения.  
 
 `{
-  "title": "Внимание! Важное сообщение! ",
-  "message": "Требуются добровольцы для украшения елки в классе"
+  "email": "parent@mail.ru",
+  "idStudent": 31,
+  "password": "12345",
+  "passwordConfirm": "12345"
 }
 `
-##### Посмотреть логи
 
-После отправки надо посмотреть логи сервиса notifier
+**Регистрация члена родительского комитета** 
+http://localhost:8080/add/member
 
-`docker-compose logs pc-notifier`
+Необходимо знать id группы.  Можно указать id ученика. 
+Предполагается что член родительского комитета или админ отправил приглашения. 
 
-Будет видно что для каждого родителя отправлено уведомление через двух агентов 
+`{
+  "email": "member@mail.ru",
+  "idGroup": 21,
+  "idStudent": 31,
+  "password": "12345",
+  "passwordConfirm": "12345"
+}
+`
 
-Что-то вроде вот этого: 
+**Регистрация новой группы и админа** 
+http://localhost:8080/add/group
 
-![alt text](https://github.com/pleshakoff/pc-root/blob/hw2/screen/log1hw2.png?raw=true"")
-
-
-
-Потом можно посмотреть логи агентов: 
-
- `docker-compose logs pc-notifier-agent-email`
+Создатель группы является админом.
  
- `docker-compose logs pc-notifier-agent-push`
+Можно выбрать школу из существующих 
+
+`{
+"email": "creator@mail.ru",
+"nameGroup": "1 А",
+"idSchool": "11",
+"password": "12345",
+"passwordConfirm": "12345"
+}
+`
+
+или создать свою
+
+`{
+"email": "creator@mail.ru",
+"nameGroup": "1 А",
+"nameSchool": "Школа № 777",
+"password": "12345",
+"passwordConfirm": "12345"
+}
+`
+
   
-![alt text](https://github.com/pleshakoff/pc-root/blob/hw2/screen/log2hw2.png?raw=true"")
-
-
+После регистрации можно пройти аутентификацию, используя в качестве логина email 
+  
