@@ -376,7 +376,7 @@ http://localhost:8080/api/v1/add/member
 `
 
 **Регистрация новой группы и админа** 
-http://localhost:8080/add/group
+http://localhost:8080/api/v1/add/group
 
 Создатель группы является админом.
  
