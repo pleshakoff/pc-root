@@ -1,1 +1,1 @@
-call all.cmd build_and_push.cmd hw3
+call all.cmd build_and_push.cmd hw3.1
