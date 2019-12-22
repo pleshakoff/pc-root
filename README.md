@@ -108,7 +108,7 @@
 ### Security 
 
 Репозиторий: https://github.com/pleshakoff/pc-security
-Swagger: http://localhost:8081/swagger-ui.html
+Swagger: http://localhost:8081/api/v1/swagger-ui.html
 
 Сервис управления учетными записями 
 
@@ -136,7 +136,7 @@ Swagger: http://localhost:8081/swagger-ui.html
 
 Репозиторий: https://github.com/pleshakoff/pc-classroom
 
-Swagger: http://localhost:8080/swagger-ui.html
+Swagger: http://localhost:8080/api/v1/swagger-ui.html
 
 Сервис отвечает за управление рабочим пространством родительского комитета. 
 И взаимосвязь основных участников бизнес процесса.   
@@ -164,7 +164,7 @@ Swagger: http://localhost:8080/swagger-ui.html
 ### News  
 Репозиторий: https://github.com/pleshakoff/pc-classroom
 
-Swagger: http://localhost:8082/swagger-ui.html
+Swagger: http://localhost:8082/api/v1/swagger-ui.html
 
 Сервис отвечающий за работу с новостями. 
 На данный момент позволяет публиковать и читать новости пользователям в контексте группы.
@@ -248,7 +248,7 @@ Swagger: http://localhost:8082/swagger-ui.html
 
 Репозиторий: https://github.com/pleshakoff/pc-notifier
 
-Swagger: http://localhost:8083/swagger-ui.html
+Swagger: http://localhost:8083/api/v1/swagger-ui.html
 
 Сервис отвечает за отправку уведомлений. Содержит список агентов.
 Рассылает уведомления в едином формате различным агентам
@@ -274,7 +274,7 @@ Swagger: http://localhost:8083/swagger-ui.html
 
 Репозиторий: https://github.com/pleshakoff/pc-notifier-agent-email
 
-Swagger: http://localhost:8084/swagger-ui.html
+Swagger: http://localhost:8084/api/v1/swagger-ui.html
 
 Отправка письма пользователю. 
 
@@ -288,7 +288,7 @@ Swagger: http://localhost:8084/swagger-ui.html
 
 Репозиторий: https://github.com/pleshakoff/pc-notifier-agent-push
 
-Swagger: http://localhost:8085/swagger-ui.html
+Swagger: http://localhost:8085/api/v1/swagger-ui.html
 
 #### Взаимодействие с другими сервисами     
   
@@ -310,7 +310,7 @@ Swagger: http://localhost:8085/swagger-ui.html
 
 Сейчас в системе созданы три пользователя с разными ролями, можно залогиниться одним из них, 
 или же сразу использовать уже готовый тестовый токен 
-http://localhost:8081/auth/login
+http://localhost:8081/api/v1/auth/login
 
 **Админ** 
 
@@ -349,7 +349,7 @@ token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnR1ckB3ZWFzbGV5LmNvbSIsInVzZXIiOiJhcnR1
 Рассылка приглашений пока не реализована.  
  
 **Регистрация простого родителя** 
-http://localhost:8080/add/parent
+http://localhost:8080/api/v1/add/parent
 
 Необходимо знать id ученика.
 
@@ -362,7 +362,7 @@ http://localhost:8080/add/parent
 `
 
 **Регистрация члена родительского комитета** 
-http://localhost:8080/add/member
+http://localhost:8080/api/v1/add/member
 
 Необходимо знать id группы.  Можно указать id ученика. 
 
