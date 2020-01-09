@@ -78,7 +78,7 @@
 ## Логическая структура 
 
 
-![alt text](https://github.com/pleshakoff/pc-root/blob/hw3.1/pics/parcom_hw3_1.png?raw=true"")
+![alt text](https://github.com/pleshakoff/pc-root/blob/hw3.1/pics/parcom_hw3.1.png?raw=true"")
 
 
 Во всех сервисах работа ведется в контексте текущего ученика. Данные о текущем ученике пользователя 
