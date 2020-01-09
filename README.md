@@ -78,7 +78,7 @@
 ## Логическая структура 
 
 
-![alt text](https://github.com/pleshakoff/pc-root/blob/hw3.1/pics/parcom_hw3.1.png?raw=true"")
+![alt text](https://github.com/pleshakoff/pc-root/blob/hw5/pics/parcom_hw5.png?raw=true"")
 
 
 Во всех сервисах работа ведется в контексте текущего ученика. Данные о текущем ученике пользователя 
@@ -104,6 +104,7 @@
 * [Notifier](#Notifier)
 * [Notifier Agent Email](#NotifierAgentEmail)
 * [Notifier Agent Push](#NotifierAgentPush)
+* [User cache](#UserCache)
 
 <a name="Security"></a>
 ### Security 
@@ -297,6 +298,19 @@ Swagger: http://localhost:8085/api/v1/swagger-ui.html
   
 1. Получает  идентификатор пользователя и текст сообщения от сервиса [Notifier](#Notifier), запрашивает телефон пользователя 
 у сервиса [Classroom](#Classroom) (GET ​/users​/{id}) и отправляет смс (в текущей версии просто пишет в лог) 
+
+<a name="UserCache"></a>
+### User cache    
+
+Репозиторий: https://github.com/pleshakoff/pc-user-cache
+
+Swagger: http://localhost:8085/api/v1/swagger-ui.html
+
+#### Взаимодействие с другими сервисами     
+  
+1. Получает  идентификатор пользователя и текст сообщения от сервиса [Notifier](#Notifier), запрашивает телефон пользователя 
+у сервиса [Classroom](#Classroom) (GET ​/users​/{id}) и отправляет смс (в текущей версии просто пишет в лог) 
+
 
 
 
