@@ -26,5 +26,12 @@ services:
     restart: on-failure
     networks:
       - app
+  pc-user-cache-redis:
+    image: redis:6.0-rc
+    ports:
+      - "6379:6379"
+    restart: on-failure
+    networks:
+      - app
 networks:
   app:

@@ -7,5 +7,7 @@
 127.0.0.1 pc-notifier-agent-email
 127.0.0.1 pc-notifier-agent-push
 127.0.0.1 pc-news-mongo
+127.0.0.1 pc-user-cache-redis
+127.0.0.1 pc-user-cache
 
  
