@@ -494,7 +494,7 @@ Time to live выбрано: 10 минут.
 
 Сервис [Classroom](#Classroom) Swagger: http://localhost:8080/api/v1/swagger-ui.html
 
-Контроллер `/users/1` метод `POST` 
+Контроллер `/users/1` метод `PUT` 
 
 Тестовый вечный токен для авторизации. Необходимо добавить в хидер запроса (X-Auth-Token)  
 `eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsInVzZXIiOiJhZG1pbkBtYWlsLmNvbSIsImlkVXNlciI6MSwiaWRHcm91cCI6MjEsImlkU3R1ZGVudCI6MzEsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTU3NjMyMDc5NywiZXhwIjoxNjA3ODU2Nzk3fQ.qEfk5Jxdc7lNpJq_AF5gjn985FZMHhnHYNroM2Thu7kVz04OucBSEWcT0dKRHytWXmr6IsVX28BuNZEfN0Z8zg`
