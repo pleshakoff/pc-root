@@ -34,6 +34,26 @@ services:
     restart: on-failure
     networks:
       - app
+  pc-zookeeper:
+    image: wurstmeister/zookeeper:3.4.6
+    ports:
+      - "2181:2181"
+    networks:
+      - app
+  pc-kafka:
+    image:  wurstmeister/kafka:2.12-2.4.0
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: pc-kafka
+      KAFKA_ZOOKEEPER_CONNECT: pc-zookeeper:2181
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_BROKER_ID: 1000
+    depends_on:
+      - pc-zookeeper
+    networks:
+      - app
+
 #################PARCOM######################
   pc-classroom:
     image: pleshakoff/pc-classroom:hw5
@@ -43,8 +63,9 @@ services:
       - app
     depends_on:
       - pc-classroom-pg
+      - pc-kafka
   pc-security:
-    image: pleshakoff/pc-security:hw5
+    image: pleshakoff/pc-security:hw6
     ports:
       - "8081:8081"
     networks:
@@ -52,38 +73,46 @@ services:
     depends_on:
       - pc-security-pg
   pc-news:
-    image: pleshakoff/pc-news:hw5
+    image: pleshakoff/pc-news:hw6
     ports:
       - "8082:8082"
     networks:
       - app
     depends_on:
       - pc-news-mongo
+      - pc-kafka
   pc-notifier:
-    image: pleshakoff/pc-notifier:hw5
+    image: pleshakoff/pc-notifier:hw6
     ports:
       - "8083:8083"
     networks:
       - app
+    depends_on:
+      - pc-kafka
   pc-notifier-agent-email:
-    image: pleshakoff/pc-notifier-agent-email:hw5
+    image: pleshakoff/pc-notifier-agent-email:hw6
     ports:
       - "8084:8084"
     networks:
       - app
+    depends_on:
+      - pc-kafka
   pc-notifier-agent-push:
-    image: pleshakoff/pc-notifier-agent-push:hw5
+    image: pleshakoff/pc-notifier-agent-push:hw6
     ports:
       - "8085:8085"
     networks:
       - app
+    depends_on:
+      - pc-kafka
   pc-user-cache:
-    image: pleshakoff/pc-user-cache:hw5
+    image: pleshakoff/pc-user-cache:hw6
     ports:
       - "8086:8086"
     networks:
       - app
     depends_on:
       - pc-user-cache-redis
+      - pc-kafka
 networks:
   app:
