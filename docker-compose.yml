@@ -1,5 +1,6 @@
 version: "3"
 services:
+#################EXTERNAL######################
   pc-classroom-pg:
     image: postgres:11
     ports:
@@ -9,14 +10,6 @@ services:
     environment:
       - POSTGRES_PASSWORD=parcom
     restart: on-failure
-  pc-classroom:
-    image: pleshakoff/pc-classroom:hw5
-    ports:
-      - "8080:8080"
-    networks:
-      - app
-    depends_on:
-      - pc-classroom-pg
   pc-security-pg:
     image: postgres:11
     ports:
@@ -27,6 +20,29 @@ services:
     environment:
       - POSTGRES_PASSWORD=parcom
     restart: on-failure
+  pc-news-mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    restart: on-failure
+    networks:
+      - app
+  pc-user-cache-redis:
+    image: redis:6.0-rc
+    ports:
+      - "6379:6379"
+    restart: on-failure
+    networks:
+      - app
+#################PARCOM######################
+  pc-classroom:
+    image: pleshakoff/pc-classroom:hw5
+    ports:
+      - "8080:8080"
+    networks:
+      - app
+    depends_on:
+      - pc-classroom-pg
   pc-security:
     image: pleshakoff/pc-security:hw5
     ports:
@@ -35,13 +51,6 @@ services:
       - app
     depends_on:
       - pc-security-pg
-  pc-news-mongo:
-    image: mongo
-    ports:
-      - "27017:27017"
-    restart: on-failure
-    networks:
-      - app
   pc-news:
     image: pleshakoff/pc-news:hw5
     ports:
@@ -68,19 +77,13 @@ services:
       - "8085:8085"
     networks:
       - app
-  pc-user-cache-redis:
-    image: redis:6.0-rc
-    ports:
-      - "6379:6379"
-    restart: on-failure
-    networks:
-      - app
   pc-user-cache:
     image: pleshakoff/pc-user-cache:hw5
     ports:
       - "8086:8086"
     networks:
       - app
-
+    depends_on:
+      - pc-user-cache-redis
 networks:
   app:
