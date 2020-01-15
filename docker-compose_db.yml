@@ -48,6 +48,8 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: pc-zookeeper:2181
       KAFKA_ADVERTISED_PORT: 9092
       KAFKA_BROKER_ID: 1000
+      KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS: 30000
+      KAFKA_HEAP_OPTS: "-Xmx256M -Xms128M"
     depends_on:
       - pc-zookeeper
     networks:
