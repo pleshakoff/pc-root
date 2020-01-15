@@ -536,4 +536,10 @@ Time to live выбрано: 10 минут.
 на которую подписаны агенты  [Notifier Agent Email](#NotifierAgentEmail)  и [Notifier Agent Push](#NotifierAgentPush)
 
 
+[Notifier](#Notifier)
+![alt text](https://github.com/pleshakoff/pc-root/blob/hw6/screen/log1hw6.png?raw=true"")
+
+
+[Notifier Agent Email](#NotifierAgentEmail)
+![alt text](https://github.com/pleshakoff/pc-root/blob/hw6/screen/log2hw6.png?raw=true"")
   
