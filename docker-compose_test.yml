@@ -42,7 +42,7 @@ services:
 
   #################PARCOM######################
   pc-classroom:
-    image: pleshakoff/pc-classroom:hw6
+    image: pleshakoff/pc-classroom:hw7
     ports:
       - "8080:8080"
     networks:
@@ -52,67 +52,67 @@ services:
       - pc-kafka
     environment:
       - JVM_OPTS=-Xmx256m -Xms128m
-  pc-security:
-    image: pleshakoff/pc-security:hw6
-    ports:
-      - "8081:8081"
-    networks:
-      - app
-    depends_on:
-      - pc-security-pg
-    environment:
-      - JVM_OPTS=-Xmx256m -Xms128m
-  pc-news:
-    image: pleshakoff/pc-news:hw6
-    ports:
-      - "8082:8082"
-    networks:
-      - app
-    depends_on:
-      - pc-news-mongo
-      - pc-kafka
-    environment:
-      - JVM_OPTS=-Xmx256m -Xms128m
-  pc-notifier:
-    image: pleshakoff/pc-notifier:hw6
-    ports:
-      - "8083:8083"
-    networks:
-      - app
-    depends_on:
-      - pc-kafka
-    environment:
-      - JVM_OPTS=-Xmx256m -Xms128m
-  pc-notifier-agent-email:
-    image: pleshakoff/pc-notifier-agent-email:hw6
-    ports:
-      - "8084:8084"
-    networks:
-      - app
-    depends_on:
-      - pc-kafka
-    environment:
-      - JVM_OPTS=-Xmx256m -Xms128m
-  pc-notifier-agent-push:
-    image: pleshakoff/pc-notifier-agent-push:hw6
-    ports:
-      - "8085:8085"
-    networks:
-      - app
-    depends_on:
-      - pc-kafka
-    environment:
-      - JVM_OPTS=-Xmx256m -Xms128m
-  pc-user-cache:
-    image: pleshakoff/pc-user-cache:hw6
-    ports:
-      - "8086:8086"
-    networks:
-      - app
-    depends_on:
-      - pc-user-cache-redis
-      - pc-kafka
-    environment:
-      - JVM_OPTS=-Xmx256m -Xms128m
+#  pc-security:
+#    image: pleshakoff/pc-security:hw6
+#    ports:
+#      - "8081:8081"
+#    networks:
+#      - app
+#    depends_on:
+#      - pc-security-pg
+#    environment:
+#      - JVM_OPTS=-Xmx256m -Xms128m
+#  pc-news:
+#    image: pleshakoff/pc-news:hw6
+#    ports:
+#      - "8082:8082"
+#    networks:
+#      - app
+#    depends_on:
+#      - pc-news-mongo
+#      - pc-kafka
+#    environment:
+#      - JVM_OPTS=-Xmx256m -Xms128m
+#  pc-notifier:
+#    image: pleshakoff/pc-notifier:hw6
+#    ports:
+#      - "8083:8083"
+#    networks:
+#      - app
+#    depends_on:
+#      - pc-kafka
+#    environment:
+#      - JVM_OPTS=-Xmx256m -Xms128m
+#  pc-notifier-agent-email:
+#    image: pleshakoff/pc-notifier-agent-email:hw6
+#    ports:
+#      - "8084:8084"
+#    networks:
+#      - app
+#    depends_on:
+#      - pc-kafka
+#    environment:
+#      - JVM_OPTS=-Xmx256m -Xms128m
+#  pc-notifier-agent-push:
+#    image: pleshakoff/pc-notifier-agent-push:hw6
+#    ports:
+#      - "8085:8085"
+#    networks:
+#      - app
+#    depends_on:
+#      - pc-kafka
+#    environment:
+#      - JVM_OPTS=-Xmx256m -Xms128m
+#  pc-user-cache:
+#    image: pleshakoff/pc-user-cache:hw6
+#    ports:
+#      - "8086:8086"
+#    networks:
+#      - app
+#    depends_on:
+#      - pc-user-cache-redis
+#      - pc-kafka
+#    environment:
+#      - JVM_OPTS=-Xmx256m -Xms128m
 networks:
   app:
