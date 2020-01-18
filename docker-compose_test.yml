@@ -1,5 +1,15 @@
 version: "3"
 services:
+  #################EXTERNAL######################
+  pc-classroom-pg:
+    image: postgres:11
+    ports:
+      - "5432:5432"
+    networks:
+      - app
+    environment:
+      - POSTGRES_PASSWORD=parcom
+    restart: on-failure
   pc-zookeeper:
     image: wurstmeister/zookeeper:3.4.6
     ports:
@@ -15,42 +25,94 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: pc-zookeeper:2181
       KAFKA_ADVERTISED_PORT: 9092
       KAFKA_BROKER_ID: 1000
+      KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS: 30000
+      KAFKA_HEAP_OPTS: "-Xmx256M -Xms128M"
     depends_on:
       - pc-zookeeper
     networks:
       - app
-#  pc-classroom-pg:
-#    image: postgres:11
-#    ports:
-#      - "5432:5432"
-#    networks:
-#      - app
-#    environment:
-#      - POSTGRES_PASSWORD=parcom
-#    restart: on-failure
-#  pc-security-pg:
-#    image: postgres:11
-#    ports:
-#      - "5433:5433"
-#    command: -p 5433
-#    networks:
-#      - app
-#    environment:
-#      - POSTGRES_PASSWORD=parcom
-#    restart: on-failure
-#  pc-news-mongo:
-#    image: mongo
-#    ports:
-#      - "27017:27017"
-#    restart: on-failure
-#    networks:
-#      - app
-#  pc-user-cache-redis:
-#    image: redis:6.0-rc
-#    ports:
-#      - "6379:6379"
-#    restart: on-failure
-#    networks:
-#      - app
+  pc-prometheus:
+    build:
+      dockerfile: DockerfileProm
+      context: .
+    ports:
+      - "9090:9090"
+    networks:
+      - app
+
+  #################PARCOM######################
+  pc-classroom:
+    image: pleshakoff/pc-classroom:hw6
+    ports:
+      - "8080:8080"
+    networks:
+      - app
+    depends_on:
+      - pc-classroom-pg
+      - pc-kafka
+    environment:
+      - JVM_OPTS=-Xmx256m -Xms128m
+  pc-security:
+    image: pleshakoff/pc-security:hw6
+    ports:
+      - "8081:8081"
+    networks:
+      - app
+    depends_on:
+      - pc-security-pg
+    environment:
+      - JVM_OPTS=-Xmx256m -Xms128m
+  pc-news:
+    image: pleshakoff/pc-news:hw6
+    ports:
+      - "8082:8082"
+    networks:
+      - app
+    depends_on:
+      - pc-news-mongo
+      - pc-kafka
+    environment:
+      - JVM_OPTS=-Xmx256m -Xms128m
+  pc-notifier:
+    image: pleshakoff/pc-notifier:hw6
+    ports:
+      - "8083:8083"
+    networks:
+      - app
+    depends_on:
+      - pc-kafka
+    environment:
+      - JVM_OPTS=-Xmx256m -Xms128m
+  pc-notifier-agent-email:
+    image: pleshakoff/pc-notifier-agent-email:hw6
+    ports:
+      - "8084:8084"
+    networks:
+      - app
+    depends_on:
+      - pc-kafka
+    environment:
+      - JVM_OPTS=-Xmx256m -Xms128m
+  pc-notifier-agent-push:
+    image: pleshakoff/pc-notifier-agent-push:hw6
+    ports:
+      - "8085:8085"
+    networks:
+      - app
+    depends_on:
+      - pc-kafka
+    environment:
+      - JVM_OPTS=-Xmx256m -Xms128m
+  pc-user-cache:
+    image: pleshakoff/pc-user-cache:hw6
+    ports:
+      - "8086:8086"
+    networks:
+      - app
+    depends_on:
+      - pc-user-cache-redis
+      - pc-kafka
+    environment:
+      - JVM_OPTS=-Xmx256m -Xms128m
 networks:
   app:
