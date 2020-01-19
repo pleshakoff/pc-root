@@ -59,7 +59,7 @@ services:
 
 #################PARCOM######################
   pc-classroom:
-    image: pleshakoff/pc-classroom:hw5
+    image: pleshakoff/pc-classroom:hw6
     ports:
       - "8080:8080"
     networks:

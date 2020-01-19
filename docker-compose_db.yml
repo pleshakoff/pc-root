@@ -1,57 +1,58 @@
-pc-classroom-pg:
-  image: postgres:11
-  ports:
-    - "5432:5432"
-  networks:
-    - app
-  environment:
-    - POSTGRES_PASSWORD=parcom
-  restart: on-failure
-pc-security-pg:
-  image: postgres:11
-  ports:
-    - "5433:5433"
-  command: -p 5433
-  networks:
-    - app
-  environment:
-    - POSTGRES_PASSWORD=parcom
-  restart: on-failure
-pc-news-mongo:
-  image: mongo
-  ports:
-    - "27017:27017"
-  restart: on-failure
-  networks:
-    - app
-pc-user-cache-redis:
-  image: redis:6.0-rc
-  ports:
-    - "6379:6379"
-  restart: on-failure
-  networks:
-    - app
-pc-zookeeper:
-  image: wurstmeister/zookeeper:3.4.6
-  ports:
-    - "2181:2181"
-  networks:
-    - app
-pc-kafka:
-  image:  wurstmeister/kafka:2.12-2.4.0
-  ports:
-    - "9092:9092"
-  environment:
-    KAFKA_ADVERTISED_HOST_NAME: pc-kafka
-    KAFKA_ZOOKEEPER_CONNECT: pc-zookeeper:2181
-    KAFKA_ADVERTISED_PORT: 9092
-    KAFKA_BROKER_ID: 1000
-    KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS: 30000
-    KAFKA_HEAP_OPTS: "-Xmx256M -Xms128M"
-
-  depends_on:
-    - pc-zookeeper
-  networks:
-    - app
+version: "3"
+services:
+  pc-classroom-pg:
+    image: postgres:11
+    ports:
+      - "5432:5432"
+    networks:
+      - app
+    environment:
+      - POSTGRES_PASSWORD=parcom
+    restart: on-failure
+  pc-security-pg:
+    image: postgres:11
+    ports:
+      - "5433:5433"
+    command: -p 5433
+    networks:
+      - app
+    environment:
+      - POSTGRES_PASSWORD=parcom
+    restart: on-failure
+  pc-news-mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    restart: on-failure
+    networks:
+      - app
+  pc-user-cache-redis:
+    image: redis:6.0-rc
+    ports:
+      - "6379:6379"
+    restart: on-failure
+    networks:
+      - app
+  pc-zookeeper:
+    image: wurstmeister/zookeeper:3.4.6
+    ports:
+      - "2181:2181"
+    networks:
+      - app
+  pc-kafka:
+    image:  wurstmeister/kafka:2.12-2.4.0
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: pc-kafka
+      KAFKA_ZOOKEEPER_CONNECT: pc-zookeeper:2181
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_BROKER_ID: 1000
+      KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS: 30000
+      KAFKA_HEAP_OPTS: "-Xmx256M -Xms128M"
+    depends_on:
+      - pc-zookeeper
+    networks:
+      - app
 networks:
   app:
