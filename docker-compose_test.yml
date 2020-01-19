@@ -51,7 +51,7 @@ services:
       - app
   pc-grafana:
     build:
-      dockerfile: DockerfileGraphana
+      dockerfile: monitoring/DockerfileGrafana
       context: ./monitoring
     ports:
       - "3000:3000"

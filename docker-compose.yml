@@ -55,18 +55,14 @@ services:
       - pc-zookeeper
     networks:
       - app
- pc-prometheus:
-    build:
-      dockerfile: DockerfilePrometheus
-      context: ./monitoring
+  pc-prometheus:
+    image: pleshakoff/pc-prometheus:hw7
     ports:
       - "9090:9090"
     networks:
       - app
   pc-grafana:
-    build:
-      dockerfile: DockerfileGraphana
-      context: ./monitoring
+    image: pleshakoff/pc-grafana:hw7
     ports:
       - "3000:3000"
     depends_on:
