@@ -34,9 +34,27 @@ services:
     restart: on-failure
     networks:
       - app
+  pc-prometheus:
+    build:
+      dockerfile: DockerfilePrometheus
+      context: ./monitoring
+    ports:
+      - "9090:9090"
+    networks:
+      - app
+  pc-grafana:
+    build:
+      dockerfile: DockerfileGraphana
+      context: ./monitoring
+    ports:
+      - "3000:3000"
+    depends_on:
+      - pc-prometheus
+    networks:
+      - app
 #################PARCOM######################
   pc-classroom:
-    image: pleshakoff/pc-classroom:hw5
+    image: pleshakoff/pc-classroom:hw7
     ports:
       - "8080:8080"
     networks:
@@ -44,7 +62,7 @@ services:
     depends_on:
       - pc-classroom-pg
   pc-security:
-    image: pleshakoff/pc-security:hw5
+    image: pleshakoff/pc-security:hw7
     ports:
       - "8081:8081"
     networks:
@@ -52,7 +70,7 @@ services:
     depends_on:
       - pc-security-pg
   pc-news:
-    image: pleshakoff/pc-news:hw5
+    image: pleshakoff/pc-news:hw7
     ports:
       - "8082:8082"
     networks:
@@ -60,25 +78,25 @@ services:
     depends_on:
       - pc-news-mongo
   pc-notifier:
-    image: pleshakoff/pc-notifier:hw5
+    image: pleshakoff/pc-notifier:hw7
     ports:
       - "8083:8083"
     networks:
       - app
   pc-notifier-agent-email:
-    image: pleshakoff/pc-notifier-agent-email:hw5
+    image: pleshakoff/pc-notifier-agent-email:hw7
     ports:
       - "8084:8084"
     networks:
       - app
   pc-notifier-agent-push:
-    image: pleshakoff/pc-notifier-agent-push:hw5
+    image: pleshakoff/pc-notifier-agent-push:hw7
     ports:
       - "8085:8085"
     networks:
       - app
   pc-user-cache:
-    image: pleshakoff/pc-user-cache:hw5
+    image: pleshakoff/pc-user-cache:hw7
     ports:
       - "8086:8086"
     networks:

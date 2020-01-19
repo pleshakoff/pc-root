@@ -1,0 +1,4 @@
+FROM grafana/grafana:6.5.3
+ADD datasource.yml /etc/grafana/provisioning/datasources
+ADD dashboards.yml /etc/grafana/provisioning/dashboards
+ADD dashboard_parcom.json /etc/grafana/provisioning/dashboards
