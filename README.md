@@ -3,9 +3,10 @@
 1. [Описание системы](#desc)
 2. [Логическая структура](#struct)
 3. [Сервисы](#service)
-4. [Get started.](#get-started)
-5. [Домашнее задание №5 (кэш)](#hw5)
-6. [Домашнее задание №6 (очередь)](#hw6)
+4. [Мониторинг.](#monitoring)
+5. [Get started.](#get-started)
+6. [Домашнее задание №5 (кэш)](#hw5)
+7. [Домашнее задание №6 (очередь)](#hw6)
 
 
 <a name="desc"></a>
@@ -316,6 +317,26 @@ Swagger: http://localhost:8086/api/v1/swagger-ui.html
 1. Запрашивает данные пользователя у сервиса [Classroom](#Classroom) (GET ​/users​/{id}), если данные не найдены в кэше 
 2. Сбрасывает данные пользователя если получает сигнал от сервиса [Classroom](#Classroom) о том что данные изменились 
 (через брокер сообщений)  
+
+
+<a name="monitoring"></a>
+## Мониторинг 
+
+Во всех сервисах созданы ендопинты для сбора метрик о состоянии процесса. 
+**Prometheus** осуществляет сбор и хранение метрик. 
+В качестве дашборда используется **Grafana**. 
+
+Доступ к Grafana http://localhost:3000/
+
+При первом запуске. 
+
+login:admin pass:admin
+
+В базе есть преднастроенный дашборд: **PARCOM**. 
+
+![alt text](https://github.com/pleshakoff/pc-root/blob/hw7/pics/parcom_hw7.png?raw=true"") 
+ 
+
 
 <a name="get-started"></a>
 ## Get started 
