@@ -328,11 +328,9 @@ Swagger: http://localhost:8086/api/v1/swagger-ui.html
 
 Доступ к Grafana http://localhost:3000/
 
-При первом запуске. 
-
 login:admin pass:admin
 
-В базе есть преднастроенный дашборд: **PARCOM**. 
+В базе уже есть преднастроенный дашборд: **PARCOM**.  На нем можно выбрать инстанс и посмотреть его метрики. 
 
 ![alt text](https://github.com/pleshakoff/pc-root/blob/hw7/pics/parcom_hw7.png?raw=true"") 
  
