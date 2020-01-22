@@ -81,7 +81,7 @@
 ## Логическая структура 
 
 
-![alt text](https://github.com/pleshakoff/pc-root/blob/hw6/pics/parcom_hw6.png?raw=true"")
+![alt text](https://github.com/pleshakoff/pc-root/blob/hw7/pics/parcom_hw7.1.png?raw=true"")
 
 
 Во всех сервисах работа ведется в контексте текущего ученика. Данные о текущем ученике пользователя 
@@ -332,7 +332,7 @@ login:admin pass:admin
 
 В базе уже есть преднастроенный дашборд: **PARCOM**.  На нем можно выбрать инстанс и посмотреть его метрики. 
 
-![alt text](https://github.com/pleshakoff/pc-root/blob/hw7/pics/parcom_hw7.png?raw=true"") 
+![alt text](https://github.com/pleshakoff/pc-root/blob/hw7/pics/parcom_hw7_dashboard.png?raw=true"") 
  
 
 
