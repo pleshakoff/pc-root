@@ -1,0 +1,1 @@
+call all.cmd hw_to_master.cmd hw8
