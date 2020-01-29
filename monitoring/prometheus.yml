@@ -30,3 +30,7 @@ scrape_configs:
     metrics_path: '/api/v1/actuator/prometheus'
     static_configs:
       - targets: ['pc-user-cache:8086']
+  - job_name: 'pc-notifier-agent-websocket'
+    metrics_path: '/api/v1/actuator/prometheus'
+    static_configs:
+      - targets: ['pc-notifier-agent-websocket:8087']
