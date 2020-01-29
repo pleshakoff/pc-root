@@ -82,7 +82,7 @@
 ## Логическая структура 
 
 
-![alt text](https://github.com/pleshakoff/pc-root/blob/hw7/pics/parcom_hw7.1.png?raw=true"")
+![alt text](https://github.com/pleshakoff/pc-root/blob/master/pics/parcom_hw8.png?raw=true"")
 
 
 Во всех сервисах работа ведется в контексте текущего ученика. Данные о текущем ученике пользователя 
@@ -107,6 +107,7 @@
 * [Notifier](#Notifier)
 * [Notifier Agent Email](#NotifierAgentEmail)
 * [Notifier Agent Push](#NotifierAgentPush)
+* [Notifier Agent Websocket](#NotifierAgentWebsocket)
 * [User cache](#UserCache)
 
 <a name="Security"></a>
@@ -303,6 +304,32 @@ Swagger: http://localhost:8085/api/v1/swagger-ui.html
 2. Запрашивает телефон пользователя у сервиса с кэшированными данными пользователя [User cache](#UserCache) 
 (GET ​/users​/{id}) и отправляет смс (в текущей версии просто пишет в лог) 
 
+
+<a name="NotifierAgentWebsocket"></a>
+### Notifier Agent Websocket    
+
+Репозиторий: https://github.com/pleshakoff/pc-notifier-agent-websocket
+
+Swagger: http://localhost:8087/api/v1/swagger-ui.html
+
+Агент для realtime отправки уведомлений клинтам через websocket 
+
+Клиентское приложение может подключиться к сокету и подписаться на получение уведомлений.
+
+Endpoint для подключения к сокету `/pusher?token=валидный_jwt_токен`
+Endpoint для подписки на уведомления `/topic/notifications/{idUser}`
+
+При логине клиент получает jwt токен и идентификатор пользователя 
+и должен использовать их для подключения и подписки на уведомления. 
+Неавторизованное подключение будет отклонено.     
+
+
+#### Взаимодействие с другими сервисами     
+  
+1. Получает  идентификатор пользователя и текст сообщения от сервиса [Notifier](#Notifier) через очередь в брокере
+
+
+
 <a name="UserCache"></a>
 ### User cache    
 
@@ -332,7 +359,7 @@ login:admin pass:admin
 
 В базе уже есть преднастроенный дашборд: **PARCOM**.  На нем можно выбрать инстанс и посмотреть его метрики. 
 
-![alt text](https://github.com/pleshakoff/pc-root/blob/hw7/pics/parcom_hw7_dashboard.png?raw=true"") 
+![alt text](https://github.com/pleshakoff/pc-root/blob/master/pics/parcom_hw7_dashboard.png?raw=true"") 
  
 
 
@@ -447,7 +474,16 @@ http://localhost:8080/api/v1/add/group
 
 <a name="hw5"></a>
 ## Домашнее задание №5 (realtime)
-under construction
+
+Для проверки подключения к websocket и подпики на уведомления необходимо взять из текущего репозитория 
+клиентское демонстрационное веб приложение. 
+Оно находится в папке **websocket_demo** скачайте папку с содержимым и откройте websocket_demo/index.html 
+в браузере. 
+
+ 
+
+ 
+
 
 
 <a name="hw6"></a>
@@ -511,7 +547,7 @@ Time to live выбрано: 10 минут.
 
 Что-то вроде вот этого: 
 
-![alt text](https://github.com/pleshakoff/pc-root/blob/hw5/screen/log1hw5.png?raw=true"")
+![alt text](https://github.com/pleshakoff/pc-root/blob/master/screen/log1hw5.png?raw=true"")
 
 Теперь можно обновить данные одного из пользователей 
 
@@ -537,7 +573,7 @@ Time to live выбрано: 10 минут.
 
 Если запостить еще одну новость и посмотреть лог,видно что данные для первого пользователя были сброшены, а данные остальных берутся из кэша  
 
-![alt text](https://github.com/pleshakoff/pc-root/blob/hw5/screen/log2hw5.png?raw=true"")
+![alt text](https://github.com/pleshakoff/pc-root/blob/master/screen/log2hw5.png?raw=true"")
 
 <a name="hw7"></a>
 ## Домашнее задание №7 (очередь)
@@ -581,9 +617,9 @@ Time to live выбрано: 10 минут.
 
 
 [Notifier](#Notifier)
-![alt text](https://github.com/pleshakoff/pc-root/blob/hw6/screen/log1hw6.png?raw=true"")
+![alt text](https://github.com/pleshakoff/pc-root/blob/master/screen/log1hw6.png?raw=true"")
 
 
 [Notifier Agent Email](#NotifierAgentEmail)
-![alt text](https://github.com/pleshakoff/pc-root/blob/hw6/screen/log2hw6.png?raw=true"")
+![alt text](https://github.com/pleshakoff/pc-root/blob/master/screen/log2hw6.png?raw=true"")
   
