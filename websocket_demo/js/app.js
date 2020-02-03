@@ -5,6 +5,7 @@ const idUser = 1;//подписаны на сообщения только дл�
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
+    $("#connectError").prop("disabled", connected);
     $("#disconnect").prop("disabled", !connected);
     if (connected) {
         $("#notification-table").show();
@@ -16,15 +17,26 @@ function setConnected(connected) {
 }
 
 //самое важное здесь
-function connect() {
+async function connect(success) {
     //создаем соединение
-    let socket = new SockJS('http://' + host + '/api/v1/pusher?token=' + token);
+    let socket = new WebSocket('ws://' + host + '/api/v1/pusher');
+    console.log("Successful handshake");
     stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
+    const header = {
+        "X-Auth-Token": token
+    };
+    if (!success)
+    {
+        console.log("waiting");
+        await new Promise(r => setTimeout(r, 2000));
+    }
+    console.log("Connection..");
+    stompClient.connect(header, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
         //idUser - текущий идентификатор пользователя из контекста клиентского приложения
         stompClient.subscribe('/topic/notifications/'+idUser, function (notification) {
+
             let parsed = JSON.parse(notification.body);
             addNotification(parsed.title,parsed.message);
         });
@@ -39,6 +51,8 @@ function disconnect() {
     console.log("Disconnected");
 }
 
+
+
 function addNotification(title,message) {
     $("#notifications").append("<tr><td>" + title+"</td><td>" + message+"</td></tr>");
 }
@@ -47,7 +61,8 @@ $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
-    $( "#connect" ).click(function() { connect(); });
+    $( "#connect" ).click(function() { connect(true); });
+    $( "#connectError" ).click(function() { connect(false); });
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#send" ).click(function() { sendName(); });
 });
