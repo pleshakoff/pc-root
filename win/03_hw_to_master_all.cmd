@@ -1,1 +1,1 @@
-call all.cmd hw_to_master.cmd hw8
+call all.cmd hw_to_master.cmd hw8.1

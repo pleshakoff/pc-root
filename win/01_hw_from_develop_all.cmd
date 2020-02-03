@@ -1,1 +1,1 @@
-call all.cmd hw_from_develop.cmd hw8
+call all.cmd hw_from_develop.cmd hw8.1

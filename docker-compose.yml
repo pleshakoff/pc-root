@@ -144,7 +144,7 @@ services:
     environment:
       - JVM_OPTS=-Xmx128m -Xms64m
   pc-notifier-agent-websocket:
-    image: pleshakoff/pc-notifier-agent-websocket:hw8
+    image: pleshakoff/pc-notifier-agent-websocket:hw8.1
     ports:
       - "8087:8087"
     networks:
