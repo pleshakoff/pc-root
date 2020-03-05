@@ -19,6 +19,16 @@ services:
     environment:
       - POSTGRES_PASSWORD=parcom
     restart: on-failure
+  pc-polls-pg:
+    image: postgres:11
+    ports:
+      - "5434:5434"
+    command: -p 5434
+    networks:
+      - app
+    environment:
+      - POSTGRES_PASSWORD=parcom
+    restart: on-failure
   pc-news-mongo:
     image: mongo
     ports:
