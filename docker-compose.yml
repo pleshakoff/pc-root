@@ -20,6 +20,16 @@ services:
     environment:
       - POSTGRES_PASSWORD=parcom
     restart: on-failure
+  pc-polls-pg:
+    image: postgres:11
+    ports:
+      - "5434:5434"
+    command: -p 5434
+    networks:
+      - app
+    environment:
+      - POSTGRES_PASSWORD=parcom
+    restart: on-failure
   pc-news-mongo:
     image: mongo
     ports:
@@ -56,13 +66,13 @@ services:
     networks:
       - app
   pc-prometheus:
-    image: pleshakoff/pc-prometheus:hw8
+    image: pleshakoff/pc-prometheus:1.0.0
     ports:
       - "9090:9090"
     networks:
       - app
   pc-grafana:
-    image: pleshakoff/pc-grafana:hw8
+    image: pleshakoff/pc-grafana:1.0.0
     ports:
       - "3000:3000"
     depends_on:
@@ -71,7 +81,7 @@ services:
       - app
 #################PARCOM######################
   pc-classroom:
-    image: pleshakoff/pc-classroom:hw8
+    image: pleshakoff/pc-classroom:1.0.0
     ports:
       - "8080:8080"
     networks:
@@ -82,7 +92,7 @@ services:
     environment:
       - JVM_OPTS=-Xmx128m -Xms64m
   pc-security:
-    image: pleshakoff/pc-security:hw8
+    image: pleshakoff/pc-security:1.0.0
     ports:
       - "8081:8081"
     networks:
@@ -92,7 +102,7 @@ services:
     environment:
       - JVM_OPTS=-Xmx128m -Xms64m
   pc-news:
-    image: pleshakoff/pc-news:hw8
+    image: pleshakoff/pc-news:1.0.0
     ports:
       - "8082:8082"
     networks:
@@ -103,7 +113,7 @@ services:
     environment:
       - JVM_OPTS=-Xmx128m -Xms64m
   pc-notifier:
-    image: pleshakoff/pc-notifier:hw8
+    image: pleshakoff/pc-notifier:1.0.0
     ports:
       - "8083:8083"
     networks:
@@ -113,7 +123,7 @@ services:
     environment:
       - JVM_OPTS=-Xmx128m -Xms64m
   pc-notifier-agent-email:
-    image: pleshakoff/pc-notifier-agent-email:hw8
+    image: pleshakoff/pc-notifier-agent-email:1.0.0
     ports:
       - "8084:8084"
     networks:
@@ -123,7 +133,7 @@ services:
     environment:
       - JVM_OPTS=-Xmx128m -Xms64m
   pc-notifier-agent-push:
-    image: pleshakoff/pc-notifier-agent-push:hw8
+    image: pleshakoff/pc-notifier-agent-push:1.0.0
     ports:
       - "8085:8085"
     networks:
@@ -133,7 +143,7 @@ services:
     environment:
       - JVM_OPTS=-Xmx128m -Xms64m
   pc-user-cache:
-    image: pleshakoff/pc-user-cache:hw8
+    image: pleshakoff/pc-user-cache:1.0.0
     ports:
       - "8086:8086"
     networks:
@@ -144,13 +154,24 @@ services:
     environment:
       - JVM_OPTS=-Xmx128m -Xms64m
   pc-notifier-agent-websocket:
-    image: pleshakoff/pc-notifier-agent-websocket:hw8.1
+    image: pleshakoff/pc-notifier-agent-websocket:1.0.0
     ports:
       - "8087:8087"
     networks:
       - app
     depends_on:
       - pc-kafka
+    environment:
+      - JVM_OPTS=-Xmx128m -Xms64m
+  pc-polls:
+    image: pleshakoff/pc-polls:1.0.0
+    ports:
+      - "8088:8088"
+    networks:
+      - app
+    depends_on:
+      - pc-kafka
+      - pc-polls-pg
     environment:
       - JVM_OPTS=-Xmx128m -Xms64m
 networks:

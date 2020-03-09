@@ -1,3 +1,3 @@
-call all.cmd build_and_push.cmd hw8.1
+call all.cmd build_and_push.cmd 1.0.0
 
 

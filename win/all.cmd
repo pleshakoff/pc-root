@@ -10,3 +10,4 @@ call %filename% %branch% pc-notifier-agent-push
 call %filename% %branch% pc-user-cache
 call %filename% %branch% pc-notifier-agent-websocket
 call %filename% %branch% pc-root
+call %filename% %branch% pc-polls
