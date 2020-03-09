@@ -1,4 +1,4 @@
-set branch=hw8
+set branch=1.0.0
 
 echo monitoring
 cd D:\jprojects\parcom\pc-root\monitoring
