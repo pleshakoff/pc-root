@@ -1,4 +1,5 @@
 version: "3"
+
 services:
   pc-classroom-pg:
     image: postgres:11
