@@ -1,103 +1,104 @@
-# Родительский комитет
+# Parent committee 
+[Russian version](https://github.com/pleshakoff/pc-root/blob/master/README_RUS.md)
 
-1. [Описание системы](#desc)
-2. [Логическая структура](#struct)
-3. [Сервисы](#service)
-4. [Мониторинг](#monitoring)
+1. [System Description](#desc)
+2. [Logical structure](#struct)
+3. [Services](#service)
+4. [Monitoring](#monitoring)
 5. [Get started](#get-started)
-6. [Realtime уведомления](#hw5)
-7. [Кэширование](#hw6)
-8. [Асинхронное взаимодействие](#hw7)
+6. [Realtime notifications](#hw5)
+7. [Caching](#hw6)
+8. [Asynchronous interaction](#hw7)
 
 
 <a name="desc"></a>
-## Описание системы. 
-Система предназначена для автоматизации работы родительского комитета в школе или детском саду.
+## System description. 
+The system is designed to automate the work of the parent committee at school or kindergarten.
 
-##### Доступный функционал на текущий момент: 
+##### Available functionality at the present time: 
 
-* Авторизация и аутентификация. 
-* Регистрация класса и учебного заведения
-* Управление списком учеников
-* Регистрация родителей и привязка к ученикам
-* Публикация и чтение новостей
-* Рассылка уведомлений родителям учеников
-* Проведение опросов среди родителй
+* Authorization and authentication. 
+* Registration of the class and educational institution
+* Managing the student list
+* Registration of parents and linking to students
+* Publishing and reading news
+* Sending notifications to parents of students
+* Conducting polls among parents
 
-##### Планируемый функционал: 
+##### Planned functionality: 
 
-* Учет сбора денег и закупок
+* Accounting for fundraising and purchases
 
-Работа в системе для каждого пользователя ведется в рамках рабочего пространства (группы или класса).
+Work in the system for each user is carried out within the workspace (group or class).
  
-Пользователи могут быть трех видов 
-* Администратор 
-* Член родительского комитета 
-* Родитель
+Users can be of three types: 
+* Administrator 
+* Member of the parent committee 
+* Parent
 
-Для организации родительского комитета  в системе необходимо создать свою группу и пригласить туда других пользователей.
-Пользователь, создавший группу, получает роль "Администратор" и может приглашать других членов родительского комитета или просто родителей.
-Остальные пользователи могут присоединиться только получив приглашение от администратора или от члена родительского комитета.
+You need to create your own group and invite other users there to organize a parent committee in the system.
+The user who created the group becomes the "Administrator" and can invite other members of the parent committee or just parents.
+Other users can join only after receiving an invitation from the administrator or from a member of the parent committee.
 
-На текущий момент для того чтобы зарегистрироваться как член родительского комитета, 
-достаточно знать идентификатор класса.
-Для того чтобы зарегистрироваться как родитель, надо знать идентификатор ученика.
+At the moment, in order to register as a member of the parent committee, it is 
+enough to know the class ID.
+In order to register as a parent, you need to know the student ID.
 
-Один и тот же пользователь может быть членом нескольких групп.  
+The same user can be a member of several groups.  
 
-В рамках группы, членами родительского комитета формируется список учеников. 
-К одному ученику может быть привязано бесконечное количество пользователей.
-Пользователь может быть родителем нескольких учеников из одной группы или  из разных групп.
+Members of the parent committee form a list of students within the group. 
+Countless users can be linked to one student.
+A user can be a parent of several students from the same group or from different groups.
 
-При входе или в процессе работы пользователь должен выбрать текущего ученика из списка доступных ему, 
-от лица которого он осуществляет операции.
+When entering or in the process of work, the user should select the current student from the list available to him, 
+on whose behalf he performs operations.
  
-Весь список учеников класса видят только члены родительского комитета.
-Обычный родитель может видеть только своих детей. 
+Only members of the parent committee see the entire list of class students.
+An ordinary parent can only see his children. 
 
-Члены родительского комитета могут публиковать новости. 
-Обычные пользователи имеют доступ к ленте новостей. 
-При публикации новости всем пользователям(родителям) рассылаются уведомления 
+Members of the parent committee can publish news. 
+Ordinary users have access to the news feed. 
+When news is published, notifications are sent to all users (parents)
 
-Члены родительского комитета могут создать опрос. Пока запрос активен родители могут выбрать один из вариантов ответов,
-или поменять свой вариант. После закрытия опроса менять, ничего нельзя. 
-Опрос может быть как общегрупповой, в котором участвуют все ученики группы, 
-так и для для ограниченного перечня учеников.
-Каждый родитель может голосовать за ученика,к которому он привязан. Если к ученику привязано несколько родителей, 
-то оба могут менять результат, но только за своего ребенка.
-Опросы могут быть публичные и анонимные. 
-При создании опроса рассылаются уведомления. 
+Members of the parent committee can create a poll. While the request is active, parents can choose one of the answers, 
+or change their option. After the poll is closed, nothing can be changed. 
+The poll can be both group-wide, in which all students of the group participate, 
+and for a limited list of students.
+Each parent can vote for the student he is linked to. If several parents are linked to a student, 
+then both can change the result, but only for their child.
+Polls can be public and anonymous. 
+Notifications are sent when creating a poll. 
 
-Для управления финансами родительского комитета в системе вводится понятие "Цель". 
-В рамках цели задается необходимая сумма и перечень учеников, которые участвуют в достиженнии цели. 
-Например на цель - "нужды класса" должны сдать все, а на цель "экскурсия" только часть учеников.
-В рамках цели учитываются входящие платежи от учеников и исходящие с описанием на что потрачено и аттачем чека.
-Член родительского комитета вносят данные о приходах и расходах и видят все движение по всем целям. 
-Обычные родители видят доступные им цели, общую сумму цели и расходы.
-Для членов родительского комитета доступны отчеты: списки должников, расходы по периодам и.т.д 
-При формировании новой цели родителям детей рассылаются уведомления.  
+The system introduces the concept of "Goal" to manage the finances of the parent committee. 
+Within the framework of goal, the required amount and the list of students who participate in achieving the goal are set. 
+For example, everyone should bring money for the "class needs" goal, and only a part of the students should bring money for the "excursion" goal.
+Within the framework of goal, incoming payments from students and outgoing ones are taken into account with a description of what was spent and an attachment of the receipt.
+A member of the parent committee enters data on receipts and expenses and sees all the movement for all goals. 
+Ordinary parents see the goals available to them, the total amount of the goal and expenses.
+Reports are available for members of the parent committee: lists of debtors, period expenses, etc.
+When forming a new goal, notifications are sent to parents of children.  
             
 
 <a name="struct"></a>
-## Логическая структура 
+## Logical structure 
 
 
-![alt text](https://github.com/pleshakoff/pc-root/blob/master/pics/parcom_hw8.png?raw=true"")
+![alt text](https://github.com/pleshakoff/pc-root/blob/master/pics/parcom_eng.png?raw=true"")
 
 
-Во всех сервисах работа ведется в контексте текущего ученика. Данные о текущем ученике пользователя 
-зашифрованы в "self contained" токене, 
-который формируется сервисом авторизации [Security](#Security) и должен передаваться во все запросы к сервисам.
+All services work in the context of the current student. The data about the user's current student is 
+encrypted in a "self contained" token, 
+which is generated by the authorization service [Security](#Security) and should be passed to all requests to services.
 
-Валидация токена осуществляется на стороне сервисов(sidecar).  
+The token is validated on the services side (sidecar).  
 
-Авторизация тоже на стороне сервисов, путем определения доступа к методам для роли из токена
-(у пользователя может быть всего одна роль и ее можно передать в токене)
+Authorization is also on the services side, by defining access to methods for a role from a token 
+(a user can have only one role and it can be transferred in a token)
 
-Сервис [Money](#Money) есть на схеме, но он не реализован. 
+Service [Money](#Money) is on the diagram, but it is not implemented. 
 
 <a name="service"></a>
-## Сервисы
+## Services
 
 * [Security](#Security)
 * [Classroom](#Classroom)
@@ -113,309 +114,307 @@
 <a name="Security"></a>
 ### Security 
 
-Репозиторий: https://github.com/pleshakoff/pc-security
+Repository: https://github.com/pleshakoff/pc-security 
 Swagger: http://localhost:8081/api/v1/swagger-ui.html
 
-Сервис управления учетными записями 
+Account Management Service 
 
-* Регистрация и хранение учетных записей 
-* Аутентификация 
-* Формирование "self contained" токена со сроком действия.
-* Хранение и переключение текущего ученика и группы пользователя
-* Смена пароля  
-* Подтверждение регистрации (не реализовано) 
+* Registration and account storage 
+* Authentication 
+* Creation of a "self contained" token with an expiration date.
+* Storing and switching the current student and user group
+* Password change 
+* Registration confirmation (not implemented) 
 
 
-#### Взаимодействие с другими сервисами     
+#### Interaction with other services 
 
- 1. При сменее текущего студента или группы (​/auth​/context) в контесте которого планирутеся вестись работа,
-   вызвает методы сервиса [Classroom](#Classroom)
- для проверки привязан ли пользователь к группе (GET /group/my) или студенту(GET /students/my).
+1. When changing the current student or group (/auth/context) in which the work is planned,
+the methods of the service are called [Classroom](#Classroom) 
+to check whether the user is linked to a group (GET /group/my) or a student (GET/students/my).
  
- 2. Методы регистрации (POST ​/users​/register) и удаления(DELETE /users​/{id}) учетной записи 
- не могут быть вызваны напрямую, т.к учетная запись привязана к родителю который зарегистрирован в сервисе 
- [Classroom](#Classroom).  Не выдают ошибку только если вызываются из сервиса [Classroom](#Classroom)   
+ 2. The account registration (POST /users/register) and deletion (DELETE /users/{id}) methods 
+cannot be called directly, because the account is linked to the parent who is registered in the service
+ [Classroom](#Classroom).  An error doesn't occurs if only they are called from the service [Classroom](#Classroom)   
  
 
 <a name="Classroom"></a>
 ### Classroom 
 
-Репозиторий: https://github.com/pleshakoff/pc-classroom
+Repository: https://github.com/pleshakoff/pc-classroom 
 
 Swagger: http://localhost:8080/api/v1/swagger-ui.html
 
-Сервис отвечает за управление рабочим пространством родительского комитета. 
-И взаимосвязь основных участников бизнес процесса.   
+The service is responsible for managing the parent committee workspace. 
+And for the relationship of the main participants of the business process.   
 
-* Регистрация группы/класса
-* Управление списком учащихся
-* Регистрация родителей 
-* Привязка родителей к ученикам
+* Group/class registration
+* Managing the student list
+* Registration of parents 
+* Linking parents to students
 
-#### Взаимодействие с другими сервисами     
+#### Interaction with other services 
 
- 1. После регистрации новой группы (POST ​/add​/group), члена родительского комитета (POST /add/member) 
- или обычного родителя (POST /add/parent) вызывает метод регистрации новой учетной записи сервиса  
- [Security](#Security) (POST /users/register). Если вызов неудачен, то создание нового родителя или группы откатывается.   
+1. After registering a new group (POST/add/group), a parent committee member (POST/add/member) 
+or an ordinary parent (POST/add/parent) the registering method of a new service account is called
+ [Security](#Security) (POST /users/register). If the call fails, the creation of a new parent or group is rolled back.   
  
- 2. При удалении пользователя(родителя) (DELETE ​/users/{id}) вызывает метод удаления (DELETE ​/users​/{id}) 
- учетной записи сервиса  [Security](#Security) (DELETE /users/{id}). Если вызов неудачен, то удаление откатывается.  
+ 2. When deleting a user (parent) (DELETE /users/{id}) the delete method is called (DELETE /users/{id}) of the 
+service account [Security](#Security) (DELETE /users/{id}). If the call fails, the deletion is rolled back.  
  
- 3. Является поставщиком информации о списке учеников. 
- При удалении или добавалении ученика отправляет сообщение в брокер сообщений для синхронизации 
- со списками учеников сервисах-потребителях. 
+ 3. Is a provider of information about the list of students. 
+ When deleting or adding a student, it sends a message to the message broker for synchronization
+ with lists of students in service consumer. 
  
- 4. При обновлении данных родителя вызывает метод сервиса кэширвоания [User cache](#UserCache), сбрасывающий 
-    данные кэша по измененному пользователю (DELETE /users/reset/{id})
-)  
+ 4. When updating the parent's data, the cache service method is called [User cache](#UserCache), resetting
+    cache data for the changed user (DELETE /users/reset/{id})
+)
  
 
 <a name="News"></a>
 ### News  
-Репозиторий: https://github.com/pleshakoff/pc-classroom
+Repository: https://github.com/pleshakoff/pc-classroom 
 
 Swagger: http://localhost:8082/api/v1/swagger-ui.html
 
-Сервис отвечающий за работу с новостями. 
-На данный момент позволяет публиковать и читать новости пользователям в контексте группы.
-Потенциально может агрегировать новости из других источников и показывать их родителям. 
+The service responsible for working with news. 
+At the moment, it allows users to publish and read news in the group context.
+It can potentially aggregate news from other sources and show them to parents. 
 
-* Публикация и хранение новостей
-* Получение списка новостей 
-* Обсуждение новостей (не реализовано)
+* Publishing and storing news
+* Getting a list of news 
+* News discussion (not implemented)
 
-#### Взаимодействие с другими сервисами     
+#### Interaction with other services
  
- 1. При публикации новости (POST​/news) помещается сообщение в брокер, которое обрабатываеся 
- сервисом [Notifier](#Notifier), который в свою очередь рассылает через агентов групповое сообщение. 
- Новость публикуется незвисимо от 
- того, удачно ли прошла рассылка уведомления.   
- 2. Получение через брокер сообщений сигнала об удалении группы от сервиса [Classroom](#Classroom)  
+ 1. When publishing a news (POST/news), a message is sended to the broker, which is processed by the service 
+[Notifier](#Notifier), which sends a group message to the agents. 
+ The news is published regardless of whether the notification was sent successfully.   
+ 2. Receiving a signal via a message broker about the deleting a group from the service [Classroom](#Classroom)  
 
 
 <a name="Polls"></a>
 ### Polls  
 
 
-Сервис предназначен для проведения отпросов среди родителей группы.
+The service is designed to conduct polls among the parents of the group.
 
-* создание опроса 
-* выбор учеников для опроса 
-* голосование 
+* creating a poll 
+* selecting students for the poll 
+* voting
 
-#### Взаимодействие с другими сервисами     
+#### Interaction with other services 
 
- 1. При создании опроса, если он общегрупповой, у сервиса [Classroom](#Classroom) запрашивается текущий состав группы,
- и список учеников привязывается к опросу. 
+1. When creating a poll, if it is group-wide, the current composition of the group is requested from the service [Classroom] (#Classroom), 
+and the list of students is linked to the poll. 
  
- 2. Через брокер сообщений список учеников в активных опросах синхронизируется со списком учеников 
- группы, поставляемым сервисом [Classroom](#Classroom). Если в группе появился новый ученик, 
- то он добавляется в активные общегрупповые опросы. Если удаляется ученик, то он удаляется из любых активных 
- опросов.
+ 2. The list of students in active polls is synchronized with the list of 
+group students provided by the service [Classroom](#Classroom) via the message broker. If there is a new student in the group, 
+then he is added to the active group-wide polls. If a student is deleted, then he is deleted from any active 
+polls.
  
- 3. Получение через брокер сообщений сигнала об удалении группы от сервиса [Classroom](#Classroom). 
+3. Receiving a signal via a message broker about the deleting a group from the service [Classroom](#Classroom). 
     
- 4. При публикации опроса, помещается сообщение в брокер, которое обрабатываеся 
-    сервисом [Notifier](#Notifier), который рассылает через агентов 
-    общегрупповое сообщение или сообщение ограниченному списку пользователей, участников опроса. 
+4. When publishing a poll, a message is placed in the broker, which is processed
+    by the service [Notifier](#Notifier), which sends a group-wide message
+    or a message to a limited list of users, poll participants via agents. 
  
 
 <a name="Money"></a>
 ### Money  
 
-**НЕ РЕАЛИЗОВАН** 
+**NOT IMPLEMENTED**
 
-Сервис учета денежных средств группы 
+Group cash accounting service 
 
-* управления целями сбора средств 
-* учет входящих транзакций  
-* учет исходящих транзакций
-* выборки для отчетов (остатки, должники) 
+* managing fundraising goals 
+* accounting for incoming transactions 
+* accounting for outgoing transactions
+* queres for reports (balances, debtors)
  
-#### Взаимодействие с другими сервисами    
+#### Interaction with other services 
 
- 1. При создании цели сбора средств, если она общегрупповая, у сервиса [Classroom](#Classroom) 
- запрашивается текущий состав группы и список учеников привязывается к цели. 
+1. When creating a fundraising goal, if it is group-wide, the 
+current composition of the group and the list of students is linked to the goal is requested from the service [Classroom](#Classroom). 
  
- 2. Через брокер сообщений список учеников в активных сборах средств синхронизируется со списком учеников 
- группы, поставляемым сервисом [Classroom](#Classroom). Если в группе появился новый ученик, 
- то он добавляется в активные общегрупповые сборы. Если удаляется ученик, то он удаляется из любых активных 
- сборов.
+ 2. The list of students in active fundraising is synchronized with the list of 
+group students provided by the service [Classroom](#Classroom)via the message broker. If there is a new student in the group, 
+then he is added to the active group-wide fundraising. If a student is deleted, then he is deleted from any active 
+fundraising.
  
- 3. Получение через брокер сообщений сигнала об удалении группы от сервиса [Classroom](#Classroom). 
+ 3. Receiving a signal via a message broker about the deleting a group from the service [Classroom](#Classroom). 
 
- 4. При создании цели сбора средств, помещается сообщение в брокер, которое обрабатываеся 
-сервисом [Notifier](#Notifier), который рассылает через агентов групповое сообщение или сообщение списку пользователей, 
-участников сбора средств. 
+ 4. When creating a fundraising goal, a message is placed in the broker, which is processed by the service 
+[Notifier](#Notifier), which sends a group message or message to a list of users 
+participanting in the fundraising via agents. 
 
 
 <a name="Notifier"></a>
 ### Notifier  
 
-Репозиторий: https://github.com/pleshakoff/pc-notifier
+Repository: https://github.com/pleshakoff/pc-notifier 
 
 Swagger: http://localhost:8083/api/v1/swagger-ui.html
 
-Сервис отвечает за формирование списка получателей уведомлений и отправку уведомлений через брокер агентам. 
+The service is responsible for generating a list of notification recipients and sending notifications via the broker to agents. 
 
-Поддерживает три вида уведомлений 
+Supports three types of notifications 
 
-* Для всей группы. 
-* Для отдельного пользователя 
-* Для списка пользователей     
+* For the whole group. 
+* For an individual user 
+* For a list of users
 
-В зависимости от типа уведомления формирует список пользователей получателей 
-и помещает сообщение для каждого получателя в брокер сообщений.   
+Depending on the type of notification, it generates a list of recipient users 
+and sends a message for each recipient in the message broker.   
 
-#### Взаимодействие с другими сервисами    
+#### Interaction with other services 
 
-1. Если сообщение общегрупповое (POST ​/send​/group), то запрашивает идентификаторы пользователей(родителей)
-группы у сервиса [Classroom](#Classroom) (GET ​/users​/all)
+1. If the message is group-wide (POST/send/group), then it requests the IDs of group users (parents)
+at the service [Classroom](#Classroom) (GET /users/all)
  
-2. Добавляет сообщения в очередь в брокере сообщений из которой её разбирают подписанные агенты. 
-
+2. Adds messages to the queue in the message broker from which it is processed by subscribed agents. 
 
 <a name="NotifierAgentEmail"></a>
 ### Notifier Agent Email    
 
-Репозиторий: https://github.com/pleshakoff/pc-notifier-agent-email
+Repository: https://github.com/pleshakoff/pc-notifier-agent-email 
 
 Swagger: http://localhost:8084/api/v1/swagger-ui.html
 
-Отправка письма пользователю. 
+Sending an email to the user. 
 
-#### Взаимодействие с другими сервисами     
-  
-1. Получает  идентификатор пользователя и текст сообщения от сервиса [Notifier](#Notifier) через очередь в брокере, 
-2. Запрашивает email пользователя у сервиса с кэшированными данными пользователя [User cache](#UserCache) (GET ​/users​/{id}) 
-и отправляет письмо (в текущей версии просто пишет в лог) 
+#### Interaction with other services 
+
+1. Receives the user ID and message text from the service [Notifier](#Notifier) via the broker, 
+2. Requests the user's email from the service with cached user data [User cache](#UserCache) (GET /users/{id}) 
+and sends an email (in current version it just writes into log) 
 
 <a name="NotifierAgentPush"></a>
-### Notifier Agent Push    
+### Notifier Agent Push
 
-Репозиторий: https://github.com/pleshakoff/pc-notifier-agent-push
+Repository: https://github.com/pleshakoff/pc-notifier-agent-push 
 
 Swagger: http://localhost:8085/api/v1/swagger-ui.html
 
-#### Взаимодействие с другими сервисами     
-  
-1. Получает  идентификатор пользователя и текст сообщения от сервиса [Notifier](#Notifier) через очередь в брокере 
-2. Запрашивает телефон пользователя у сервиса с кэшированными данными пользователя [User cache](#UserCache) 
-(GET ​/users​/{id}) и отправляет смс (в текущей версии просто пишет в лог) 
+#### Interaction with other services 
+
+1. Receives the user ID and message text from the service [Notifier](#Notifier) via the broker 
+2. Requests the user's phone number from the service with cached user data [User cache](#UserCache) 
+(GET /users/{id}) and sends sms (in current version it just writes into log) 
 
 
 <a name="NotifierAgentWebsocket"></a>
-### Notifier Agent Websocket    
+### Notifier Agent Websocket
 
-Репозиторий: https://github.com/pleshakoff/pc-notifier-agent-websocket
+Repository: https://github.com/pleshakoff/pc-notifier-agent-websocket 
 
 Swagger: http://localhost:8087/api/v1/swagger-ui.html
 
-Агент для realtime отправки уведомлений клинтам через websocket 
+Agent for sending realtime notifications to clients via websocket
 
-Клиентское приложение может подключиться к сокету и подписаться на получение уведомлений.
+The client application can connect to the socket and subscribe to receive notifications.
 
-Endpoint для подключения к сокету `/pusher`
-Endpoint для подписки на уведомления `/topic/notifications/{idUser}`
+Endpoint to connect to socket `/pusher`
+Endpoint for notification subscription `/topic/notifications/{idUser}`
 
-Неавторизованный пользователь может создать websocket соединение. 
-После установки соединения он должен подписаться на рассылку. При подписке необходимо в заголовке stomp сообщения,
-указать jwt токен. Если это не будет сделано, то сервер разорвет сессию по таймауту. 
+An unauthorized user can create a websocket connection. 
+After the connection setup, he should subscribe to socket. When subscribing, it is necessary to 
+specify a jwt token in the header of the stomp message. If this is not done, the server will terminate the session by timeout. 
 
 
-#### Взаимодействие с другими сервисами     
-  
-1. Получает  идентификатор пользователя и текст сообщения от сервиса [Notifier](#Notifier) через очередь в брокере
+#### Interaction with other services 
+
+1. Receives the user ID and message text from the service [Notifier](#Notifier) via a queue in the broker
 
 
 <a name="UserCache"></a>
-### User cache    
+### User cache
 
-Репозиторий: https://github.com/pleshakoff/pc-user-cache
+Repository: https://github.com/pleshakoff/pc-user-cache 
 
 Swagger: http://localhost:8086/api/v1/swagger-ui.html
 
-Сервис для кэширования данных родителей(пользователей). 
-Кэш сбрасывается по истечении ttl или при изменении данных родителя(пользователя) в сервисе [Classroom](#Classroom) 
+A service for caching data of parents (users). 
+The cache is reset after the ttl expires or when the parent (user) data changes in the service [Classroom](#Classroom) 
 
-#### Взаимодействие с другими сервисами     
-  
-1. Запрашивает данные пользователя у сервиса [Classroom](#Classroom) (GET ​/users​/{id}), если данные не найдены в кэше 
-2. Сбрасывает данные пользователя при вызове другими сервисами специального эндпоинта (DELETE /users/reset/{id})   
+#### Interaction with other services 
+
+1. Requests user data from the service [Classroom](#Classroom) (GET /users/{id}) if the data is not found in cache 
+2. Resets user data when other services call a special endpoint (DELETE /users/reset/{id}) 
 
 
 <a name="monitoring"></a>
-## Мониторинг 
+## Monitoring
 
-Во всех сервисах созданы ендопинты для сбора метрик о состоянии процесса. 
-**Prometheus** осуществляет сбор и хранение метрик. 
-В качестве дашборда используется **Grafana**. 
+Endpoints are created in all services to collect metrics about the state of the process. 
+**Prometheus** collects and stores metrics. 
+**Grafana** is used as a dashboard. 
 
-Доступ к Grafana http://localhost:3000/
+Access to Grafana http://localhost:3000/login:admin 
 
-login:admin pass:admin
+pass:admin
 
-В базе уже есть преднастроенный дашборд: **PARCOM**.  На нем можно выбрать инстанс и посмотреть его метрики. 
+The database already has a preconfigured dashboard: **PARCOM**.  You can select an instance on it and view its metrics. 
 
-![alt text](https://github.com/pleshakoff/pc-root/blob/master/pics/parcom_hw7_dashboard.png?raw=true"") 
+![alt text](https://github.com/pleshakoff/pc-root/blob/master/pics/parcom_hw7_dashboard.png?raw=true"")
  
 
 
 <a name="get-started"></a>
 ## Get started 
 
-Для развертывания сервисов необходимо выполнить `docker-compose up` из этого репозитория, запущены 
-будут контейнеры с сервисами из публичного docker hub.
+To deploy services, you need to run `docker-compose up` from this repository, 
+service containers will be pulled from the public docker hub.
 
-В систему загружены тестовые данные и можно пробовать вызывать API. 
-Ссылки на swagger для каждого сервиса указаны в описании сервисов. 
+Test data is loaded into the system and you can try to call the API. 
+Links to swagger for each service are provided in the description of the services. 
 
-### Логин 
+### Login
 
-Сейчас в системе созданы три пользователя с разными ролями, можно залогиниться одним из них, 
-или же сразу использовать уже готовый тестовый токен 
-http://localhost:8081/api/v1/auth/login
+Now there are three users with different roles created in the system, you can log in with one of them, 
+or immediately use a ready-made test token 
+http://localhost:8081/api/v1/auth/login 
 
-**Админ** 
+**Admin** 
 
-logn: admin@mail.com
+logn: admin@mail.com 
 
-pass: 12345
+pass: 12345 
 
 token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsInVzZXIiOiJhZG1pbkBtYWlsLmNvbSIsImlkVXNlciI6MSwiaWRHcm91cCI6MjEsImlkU3R1ZGVudCI6MzEsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTU3NjMyMDc5NywiZXhwIjoxNjA3ODU2Nzk3fQ.qEfk5Jxdc7lNpJq_AF5gjn985FZMHhnHYNroM2Thu7kVz04OucBSEWcT0dKRHytWXmr6IsVX28BuNZEfN0Z8zg
 
 
-**Член родительского комитета**
-  
-logn: molly@weasley.com
+**Parent committee member** 
 
-pass: 12345
+logn: molly@weasley.com 
+
+pass: 12345 
 
 token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtb2xseUB3ZWFzbGV5LmNvbSIsInVzZXIiOiJtb2xseUB3ZWFzbGV5LmNvbSIsImlkVXNlciI6MiwiaWRHcm91cCI6MjEsImlkU3R1ZGVudCI6MzIsImF1dGhvcml0aWVzIjoiUk9MRV9NRU1CRVIiLCJpYXQiOjE1NzYzMjA3NDEsImV4cCI6MTYwNzg1Njc0MX0.lo9iJNR3XW-R8EzQKivIKEJD0nwvFAoIyT62lE2f3PvC6oP66jHDloC83wukTEcemmuI_Ant4bq1t4EF-r7WGg
 
 
-**Простой родитель**
-  
-logn: artur@weasley.com
+**Ordinary parent** 
 
-pass: 12345
+logn: artur@weasley.com 
+
+pass: 12345 
 
 token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnR1ckB3ZWFzbGV5LmNvbSIsInVzZXIiOiJhcnR1ckB3ZWFzbGV5LmNvbSIsImlkVXNlciI6MywiaWRHcm91cCI6MjEsImlkU3R1ZGVudCI6MzIsImF1dGhvcml0aWVzIjoiUk9MRV9QQVJFTlQiLCJpYXQiOjE1NzYzMjA2ODgsImV4cCI6MTYwNzg1NjY4OH0.E91aUr4OKnWq1sdRVpSdv2UDuis9i5-9QUMgQxn_I4iNB7ee5so04gzisJGL9a3UhNLHTjwu3yN-AVEWVZ8w-Q
  
-### Регистрация 
+### Registration
 
-Регистрация просисходит через сервис [Classroom](#Classroom). 
-Помимо учетной записи при регистрации создается родитель и привязвается к группе и к ученику.
+Registration via the service [Classroom](#Classroom). 
+In addition to the account, a parent is created during registration and is linked to the group and to the student.
 
-Для регистрации необходимы данные ученика или группы. 
-Передполагается что родителям были отправлены письма с приглашением 
-с необходимой зашифрованной информацией и они регистрируются, перейдя по ссылке в письме.
-Рассылка приглашений пока не реализована.  
+Student or group data is required for registration. 
+It is assumed that the invitation letters 
+with the necessary encrypted information were sent to the parents and they register by following the link in the letter.
+Sending invitations has not yet been implemented.  
  
-**Регистрация простого родителя** 
+**Registration of an ordinary parent** 
 http://localhost:8080/api/v1/add/parent
 
-Необходимо знать id ученика.
+It is necessary to know the student ID.
 
 `{
   "email": "parent@mail.ru",
@@ -425,10 +424,10 @@ http://localhost:8080/api/v1/add/parent
 }
 `
 
-**Регистрация члена родительского комитета** 
+**Registration of a parent committee member** 
 http://localhost:8080/api/v1/add/member
 
-Необходимо знать id группы.  Можно указать id ученика. 
+You need to know the group id.  You can specify the student id. 
 
 `{
   "email": "member@mail.ru",
@@ -439,226 +438,223 @@ http://localhost:8080/api/v1/add/member
 }
 `
 
-**Регистрация новой группы и админа** 
+**Registration of a new group and admin** 
 http://localhost:8080/api/v1/add/group
 
-Создатель группы является админом.
+Admin is the creator of the group.
  
-Можно выбрать школу из существующих 
+You can select a school from existing ones 
 
 `{
-"email": "creator@mail.ru",
-"nameGroup": "1 А",
+"email": "creator@mail.ru ",
+"nameGroup": "1A",
 "idSchool": "11",
 "password": "12345",
 "passwordConfirm": "12345"
 }
 `
 
-или создать свою
+or create your own
 
 `{
 "email": "creator@mail.ru",
-"nameGroup": "1 А",
-"nameSchool": "Школа № 777",
+"nameGroup": "1A",
+"nameSchool": "School No. 777",
 "password": "12345",
 "passwordConfirm": "12345"
 }
 `
 
-  
-После регистрации можно пройти аутентификацию, используя в качестве логина email 
+After registration, you can authenticate using email as a login 
 
 
 <a name="hw5"></a>
-## Realtime уведомления
+## Realtime 
 
 
-Реализовано получение уведомлений в реальном времени через websocket. За отправку уведомлений отвечает сервис 
-[Notifier Agent Websocket](#NotifierAgentWebsocket)  
+Realtime notifications are implemented via websocket. The service 
+[Notifier Agent Websocket](#NotifierAgentWebsocket) is responsible for sending notifications  
 
-Для развертывания сервисов необходимо выполнить `docker-compose up` из этого репозитория, запущены 
-будут контейнеры с сервисами из публичного docker hub.(см. [Get started](#get-started))
+To deploy services, you need to run `docker-compose up` from this repository, 
+service containers will be launched from the public docker hub. (see [Get started](#get-started))
  
-Для проверки подключения к websocket и подписки на уведомления необходимо взять из текущего репозитория 
-клиентское демонстрационное веб приложение. 
-Оно находится в папке `websocket_demo` скачайте папку с содержимым и откройте `websocket_demo/index.html` 
-в браузере. 
+To test the connection to websocket and subscribe to notifications, you need to take a 
+demo client web application from the current repository. 
+It is located in the `websocket_demo` folder, download the content folder and open `websocket_demo/index.html ` 
+in the browser. 
 
-Нажимите кнопку "Сonnect" для подключения к сокету. И отправьте новость через сервис [News](#News). 
-Как это сделать детально описано в [домашнем задании #6](#hw6addNews)
+Press the "Connect" button to connect to the socket. And send the news via the service[News](#News). 
+How to do this is described in detail [here](#hw6addNews)
 
-Публикация новости, запускает механизм отправки уведомлений всем родителям группы. 
-Сервис [Notifier](#Notifier) получает список родителей и кладет сообщение для каждого родителя в
-очередь, откуда ее разбирают различные агенты в том числе [Notifier Agent Websocket](#NotifierAgentWebsocket), 
-который отправляет сообщения клиентам, подключенным к его сокету.    
+The publication of the news launches a mechanism for sending notifications to all parents of the group. 
+Service [Notifier](#Notifier) receives a list of parents and puts a message for each parent in a 
+queue, from where it is processed by various agents, including [Notifier Agent Websocket](#NotifierAgentWebsocket), 
+which sends messages to clients connected to its socket.    
 
-В результате в таблице уведомлений на демо-страничке должно появиться уведомление об опубликованной новости   
+As a result, a notification about the published news should appear in the notification table on the demo page
 
 ![alt text](https://github.com/pleshakoff/pc-root/blob/master/screen/wsDemo_hw8.png?raw=true"")
 
-Реализацию подключения можно посмотреть здесь `websocket_demo/js/app.js` 
-Ну или здесь https://github.com/pleshakoff/pc-root/blob/master/websocket_demo/js/app.js 
+You can see the implementation of the connection here `websocket_demo/js/app.js `
+Well, or here https://github.com/pleshakoff/pc-root/blob/master/websocket_demo/js/app.js 
 
-Все настройки для демонстрации захардкодены непосредственно в джава-скрипте.
+All settings for the demonstration are hard-coded directly in the java script.
  
-Предполагаеся что клиент залогинен, уже получил авторизационный jwt токен и знает идентификатор текущего пользователя.
-На нашей демо страничке мы подписаны на уведомления для пользователя с идентификатором 1, это один из родителей группы.
-Хотя пуши и отправляются сразу трем пользователям, онлайн только 1. 
+Is is assumed that the client is logged in, has already received an authorization jwt token and knows the current user ID.
+On our demo page, we are subscribed to notifications for a user with ID 1, this is one of the parents of the group.
+Although push notifications are sent to three users at once, only one is online. 
 
-Авторизация организована так. Неавторизованный пользователь может создать websocket соединение. 
-После установки соединения он должен подписаться на рассылку. При подписке необходимо в заголовке stomp сообщения,
-указать токен. Если это не будет сделано, то сервер разорвет сессию(я пока поставил таймаут 2 секунды). 
+Authorization is organized as follows. An unauthorized user can create a websocket connection. 
+After the connection setup, he should subscribe to mailing. When subscribing, you must 
+specify a token in the header of the stomp message. If this is not done, the server will terminate the session (I have set a timeout of 2 seconds so far). 
 
-На сервере реализовно следующим образом. При хэндшейке создается сессия и помещается в список сессий,
-ожидающих подтверждения. Для каждой сессии фиксируется время до которого ее надо подтвердить.
-Если подписка состоялась и токен был верный, то сессия убирается из списка и считается подтвержденной. 
-Если нет, то она будет прибита фоновым процессом, который мониторит список на предмет "expired" сессий.    
+It is implemented on the server as follows. During a handshake, a session is created and placed in the list of sessions 
+waiting for confirmation. For each session, the time before which it needs to be confirmed is fixed.
+If the subscription occured and the token was correct, then the session is removed from the list and is considered confirmed. 
+If not, it will be killed by a background process that monitors the list for "expired" sessions.    
 
 ![alt text](https://github.com/pleshakoff/pc-root/blob/master/screen/log1hw8.1.png?raw=true"")          
 
 
 <a name="hw6"></a>
-## Кэширование
+## Caching
 
-В качестве объекта для кэширования выбраны данные пользователей(родителей). 
-Во первых, эти данные стабильны и меняются редко. 
-Во вторых, одна из частых операций в системе это рассылка уведомлений, для которых нужны данные пользователя.
-Уведомления рассылаются при добавлении новости, комментария, опроса, начала сбора средств и т.д.
-Уведомления рассылаются агентами, каждый из которых отвечает за различные методы уведомлений: email, sms, 
-сообщение в популярных соцсетях и прочее. 
-Каждый агент автономен и каждому из них необходимы разные данные пользователя. 
-Каждый агент запрашивает профиль пользователя-получателя у сервиса [Classroom](#Classroom) и использует те данные, 
-которые ему нужны для формирования и отправки уведомления(например для отправки по почте email и имя, а для sms телефон). 
-Если один агент запросил данные профиля пользователя, логично эти данные где-нибудь сохранить, 
-чтобы агент, отправляющий уведомления другим способом мог ими воспользоваться. 
-Также при отправке следующего уведомления этому же пользователью можно опять взять их из кэша. 
+The data of users (parents) is selected as the object for caching. 
+Firstly, this data are stable and rarely change. 
+Secondly, one of the most frequent operations in the system is sending notifications that require user data.
+Notifications are sent when news, comments, polls, fundraising starts, etc. are added.
+Notifications are sent by agents, each of which is responsible for various notification methods: email, SMS, 
+message in popular social networks, and so on. 
+Each agent is autonomous and each of them needs different user data. 
+Each agent requests the profile of the recipient user from the service [Classroom](#Classroom) and uses the data 
+that it needs to generate and send notifications (for example, e-mail and name to send an email, and phone number to send sms). 
+If one agent requested user profile data, it is logical to save this data somewhere 
+so that the agent sending notifications in another way can use them. 
+Also, when sending the next notification to the same user, you can take them from the cache again. 
 
-Кэш находится в сервисе [User cache](#UserCache) 
-В качестве хранилища кэша используется Redis.  
-Time to live выбрано: 10 минут. 
-Также при изменении данных пользователя в сервисе [Classroom](#Classroom), сервису кэша [User cache](#UserCache) отправляется сообщение 
-и кэш для измененного пользователя сбрасывается         
+The cache is located in the service [User cache](#UserCache) 
+Redis is used as cache store.  
+Time to live selected: 10 minutes. 
+Also when changing user data in the service [Classroom](#Classroom), a message is sent to the cache service [User cache](#UserCache) 
+and the cache for the changed user is reset
  
-При росте объема данных кэш можно партиционировать, например по географическому признаку, 
-в зависмости от того в каком регионе находится учебное заведение   
+As the amount of data grows, the cache can be partitioned, for example, by geography, 
+depending on the region in which the educational institution is located
  
-Для того чтобы проверить работу кэша, надо добавить новость, и уведомления будут отправлены всем родителям группы.
-После этого надо посмотреть логи сервиса кэширования. 
+In order to check the cache operation, you need to add news, and notifications will be sent to all parents of the group.
+After that, you need to check the caching service logs. 
 
-Для развертывания сервисов необходимо выполнить `docker-compose up` из этого репозитория, запущены 
-будут контейнеры с сервисами из публичного docker hub.(см. [Get started](#get-started))
+To deploy services, you need to run `docker-compose up` from this repository, 
+service containers will be launched from the public docker hub. (see [Get started](#get-started))
  
 <a name="hw6addNews"></a>
-##### Добавить новость:
+##### Add news:
 
 
-Сервис [News](#News) Swagger: http://localhost:8082/api/v1/swagger-ui.html
+Service[News](#News) Swagger: http://localhost:8082/api/v1/swagger-ui.html
 
-Контроллер `/news` метод `POST` 
+Controller `/news` method `POST`
 
-Тестовый вечный токен для авторизации. Необходимо добавить в хидер запроса (X-Auth-Token)  
+A test eternal token for authorization. It is necessary to add to the request header (X-Auth-Token) 
 `eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsInVzZXIiOiJhZG1pbkBtYWlsLmNvbSIsImlkVXNlciI6MSwiaWRHcm91cCI6MjEsImlkU3R1ZGVudCI6MzEsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTU3NjMyMDc5NywiZXhwIjoxNjA3ODU2Nzk3fQ.qEfk5Jxdc7lNpJq_AF5gjn985FZMHhnHYNroM2Thu7kVz04OucBSEWcT0dKRHytWXmr6IsVX28BuNZEfN0Z8zg`
 
-Тело запроса 
+Request body 
 
 `
 {
-  "title": "Внимание! Важное сообщение!",
-  "message": "Требуются родители для участия в добровольных состязаниях по бегу в мешках. Явка добровольцев обязательна"
+ "title": "Attention! Important message!", 
+"message": "Parents are required to participate in voluntary sack races. The volunteers are expected to attend"
 }
 `
 
-После публикации новости уведомление будет отправлено в сервис [Notifier](#Notifier), 
-который перенаправит его трем агентам  
+After the news is published, a notification will be sent to the service [Notifier](#Notifier), 
+which will redirect it to three agents
 
-##### Посмотреть логи
+##### View logs
 
 `docker-compose logs pc-user-cache`
 
-Будет видно что при обращении к сервису [User cache](#UserCache) первого агента, 
-вызов перенаправляется сервису [Classroom](#Classroom). 
-При попытке второго агента получить данные того же самого пользователя, даннее берутся уже из кэша.  
+It seems that when accessing the service [User cache](#UserCache) of the first agent, the 
+call is redirected to the service [Classroom](#Classroom). 
+When the second agent tries to get the data of the same user, the data is already taken from the cache.  
 
-Что-то вроде вот этого: 
+Something like this: 
 
 ![alt text](https://github.com/pleshakoff/pc-root/blob/master/screen/log1hw5.png?raw=true"")
 
-Теперь можно обновить данные одного из пользователей 
+Now you can update the data of one of the users
 
-Сервис [Classroom](#Classroom) Swagger: http://localhost:8080/api/v1/swagger-ui.html
+Service [Classroom](#Classroom) Swagger: http://localhost:8080/api/v1/swagger-ui.html
 
-Контроллер `/users/1` метод `PUT` 
+Controller `/users/1` method `PUT`
 
-Тестовый вечный токен для авторизации. Необходимо добавить в хидер запроса (X-Auth-Token)  
+A test eternal token for authorization. It is necessary to add to the request header (X-Auth-Token) 
 `eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsInVzZXIiOiJhZG1pbkBtYWlsLmNvbSIsImlkVXNlciI6MSwiaWRHcm91cCI6MjEsImlkU3R1ZGVudCI6MzEsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTU3NjMyMDc5NywiZXhwIjoxNjA3ODU2Nzk3fQ.qEfk5Jxdc7lNpJq_AF5gjn985FZMHhnHYNroM2Thu7kVz04OucBSEWcT0dKRHytWXmr6IsVX28BuNZEfN0Z8zg`
 
-Тело запроса 
+Request body 
 
 `
-{
-  "familyName": "Фамилия",
-  "firstName": "Имя",
-  "middleName": "Отчество",
+{ 
+"familyName": "Last Name", 
+"firstName": "First name", 
+"middleName": "Middle name",
   "phone": "+7 915 1234567"
 }
 `
 
-Кэш для пользователя с идентификатором 1 будет сброшен. 
+The cache for the user with ID 1 will be reset. 
 
-Если запостить еще одну новость и посмотреть лог,видно что данные для первого пользователя были сброшены, а данные остальных берутся из кэша  
+If you post another news and view the log, you can see that the data for the first user has been reset, and the data of the rest is taken from the cache
 
 ![alt text](https://github.com/pleshakoff/pc-root/blob/master/screen/log2hw5.png?raw=true"")
 
 <a name="hw7"></a>
-## Асинхронное взаимодействие
+## Asynchronous interaction
 
-Добавлен брокер сообщений - Kafka.  
+Kafka message broker is added.  
 
-Чем был обусловлен выбор
+Why did I choose it?
 
-Я выбирал rabbitMQ  или Kafka
+I chose between RabbitMQ and Kafka 
 
-1) В данной системе не нужны возможности RabbitMQ по затейливому роутингу сообщений. 
-По сути нужны факты того что где-то что-то обновилось, 
-а консьюмеры уже сами должны решать что с этим делать (dumb broker).
-
-2) В выбранной архитектуре предполагается что есть некие источники знаний, 
-например состав группы учеников и есть ряд потребителей факта изменения состава. 
-В случае с RabbitMQ сообщение об изменении состава должно роутиться по нескольким очередям. 
-Для каждого сервиса-подписчика своя очередь. Если добавится еще один сервис, которому нужен будет состав группы, 
-надо будет переконфигурировать брокер
-В случае с Kafka все сервисы читают из одного топика, просто для разных групп разное смещение.
-3) То же самое с расылкой уведомлений пользователям, несколько агентов могут быть подписаны на один топик, 
-при добавлении агента, это просто еще один подписчик, ничего изменять не надо.  
-4) Одним из преимуществ Kafka считается то, что она более устойчива к нагрузкам и лучше масштабируется. 
-При использования данной системы предполагается наличие сезонных нагрузок (сентябрь - начало учебы). 
-В такие моменты можно увеличивать количество партиций в топике и количество инстансов подписчиков.
+1) This system does not need RabbitMQ's smart message routing capabilities. 
+Indeed, we need facts that something has been updated somewhere, 
+and consumers need to decide what to do with it (dumb broker).
+2) The chosen architecture assumes that there are some sources of knowledge, for 
+example, the membership of a group of students and there are a number of consumers of the fact of a change in group membership. 
+In the case of RabbitMQ, the message about the group membership change should be routed in several queues. 
+Each subscriber service has its own queue. If another service is added that needs the group membership, 
+it will be necessary to reconfigure the broker
+In the case of Kafka, all services read from the same topic, just different offset for different groups.
+3) The same with sending notifications to users. Several agents can be subscribed to one topic. 
+When an agent is added, it's just another subscriber, nothing needs to be changed.  
+4) One of the advantages of Kafka is that it is more resistant to loads and scales better. 
+When using this system, seasonal loads are assumed (September and the beginning of studies). 
+At such moments, you can increase the number of partitions in the topic and the number of subscriber instances.
  
 
-Ниже перечислены операции осуществляемые теперь по message-based протоколу 
+The following operations are now performed using the message-based protocol 
 
-1) Отправка уведомления сервисами 
-2) Передача уведомления подписанным агентам 
-3) Сообщение сервисам-подписчикам об изменении состава группы (удаление, доабавение ученика) 
-4) Сообщение об удалении группы.  
+1) Sending notifications by services 
+2) Sending notification to subscribed agents 
+3) Message to the subscriber services about the change in the group membership (deleting, adding of a student) 
+4) A message about deleting a group.  
 
 
-Для развертывания сервисов необходимо выполнить `docker-compose up` из этого репозитория, запущены 
-будут контейнеры с сервисами из публичного docker hub.(см. [Get started](#get-started))
+To deploy services, you need to run`docker-compose up` from this repository, 
+service containers will be launched from the public docker hub. (see [Get started](#get-started))
 
-Для того чтобы проверить работоспособность: необходимо  добавить новость так 
-как это описано в [домашнем задании #6](#hw6addNews)
+In order to check the performance, it is necessary to add the news 
+as it is described in [homework #6](#hw6addNews)
 
-После этого можно посмотреть логи сервиса [Notifier](#Notifier),который берет соообщение из очереди,
-определяет перечень получателей и помещает уведомление для каждого получателя в очередь, 
-на которую подписаны агенты:  [Notifier Agent Email](#NotifierAgentEmail), [Notifier Agent Push](#NotifierAgentPush) и
+After that, you can view the logs of the service [Notifier](#Notifier), which takes a message from the queue, 
+determines the list of recipients and places a notification for each recipient in the queue 
+to which agents are subscribed: [Notifier Agent Email](#NotifierAgentEmail), [Notifier Agent Push](#NotifierAgentPush) and
 [Notifier Agent Websocket](#NotifierAgentWebsocket)
 
 
 [Notifier](#Notifier)
 ![alt text](https://github.com/pleshakoff/pc-root/blob/master/screen/log1hw6.png?raw=true"")
-
 
 [Notifier Agent Email](#NotifierAgentEmail)
 ![alt text](https://github.com/pleshakoff/pc-root/blob/master/screen/log2hw6.png?raw=true"")
@@ -667,3 +663,4 @@ Time to live выбрано: 10 минут.
  
 
   
+
