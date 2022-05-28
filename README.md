@@ -199,9 +199,9 @@ It can potentially aggregate news from other sources and show them to parents.
 
 The service is designed to conduct polls among the parents of the group.
 
-* creating a poll 
-* selecting students for the poll 
-* voting
+* Creating a poll 
+* Selecting students for the poll 
+* Voting
 
 #### Interaction with other services 
 
@@ -227,10 +227,10 @@ polls.
 
 Group cash accounting service 
 
-* managing fundraising goals 
-* accounting for incoming transactions 
-* accounting for outgoing transactions
-* queres for reports (balances, debtors)
+* Managing fundraising goals 
+* Accounting for incoming transactions 
+* Accounting for outgoing transactions
+* Queres for reports (balances, debtors)
  
 #### Interaction with other services 
 
