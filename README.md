@@ -1,4 +1,4 @@
-# Parent committee 
+# Parents committee 
 [Russian version](https://github.com/pleshakoff/pc-root/blob/master/README_RUS.md)
 
 1. [System Description](#desc)
